@@ -24,6 +24,10 @@ This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-opti
 
 This project uses dummy data from [dummyjson.com](https://dummyjson.com/).
 
+## Deployment
+
+This project is deployed on Netlify at [https://deluxe-douhua-435825.netlify.app/](https://deluxe-douhua-435825.netlify.app/).
+
 ## Issues found in mockup
 
 There are several issues in the [Figma mockup](https://www.figma.com/design/yKiOqBqcJVCuG42i6tmrkM/Front-End-Dev-Test?node-id=1133-16284&t=uJGmBShEkUrtbBrm-1). I have followed the mockup as closely as possible, but would like to point out the following:

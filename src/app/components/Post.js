@@ -1,9 +1,7 @@
-"use client";
 import Image from "next/image";
 import Link from "next/link";
 
-const Post = (post) => {
-  console.log(post);
+const Post = ({ post }) => {
   const { id, title, body, tags, reactions, views, userId } = post;
 
   // these links need to go to the user profile page
@@ -38,15 +36,25 @@ const Post = (post) => {
       </div>
       <div className="p-4 flex gap-6 text-secondary border-t border-content-border">
         <span className="flex gap-1">
-          <Image src="/icons/like.svg" width={16} height={16} />
+          <Image src="/icons/like.svg" alt="like icon" width={16} height={16} />
           {reactions?.likes}
         </span>
         <span className="flex gap-1">
-          <Image src="/icons/share.svg" width={16} height={16} />
+          <Image
+            src="/icons/share.svg"
+            alt="share icon"
+            width={16}
+            height={16}
+          />
           {reactions?.dislikes}
         </span>
         <span className="flex gap-1">
-          <Image src="/icons/views.svg" width={16} height={16} />
+          <Image
+            src="/icons/views.svg"
+            alt="views icon"
+            width={16}
+            height={16}
+          />
           {views}
         </span>
       </div>
