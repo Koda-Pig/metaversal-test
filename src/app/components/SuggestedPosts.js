@@ -1,16 +1,13 @@
+import { limitItems } from "../lib";
 import Post from "./Post";
 
 const sortPostsByLikeCount = (posts) => {
   return posts.sort((a, b) => b.reactions.likes - a.reactions.likes);
 };
 
-const limitPosts = (posts, limit) => {
-  return posts.slice(0, limit);
-};
-
 const SuggestedPosts = ({ posts }) => {
   const sortedPosts = sortPostsByLikeCount(posts);
-  const limitedPosts = limitPosts(sortedPosts, 2);
+  const limitedPosts = limitItems(sortedPosts, 2);
 
   return (
     <>
