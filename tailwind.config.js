@@ -13,7 +13,8 @@ module.exports = {
         "content-border": "#E4E7E8",
         primary: "#141c24",
         secondary: "#5c6970",
-        link: "#4426D9"
+        link: "#4426D9",
+        "bg-primary": "#F9FAFA"
       }
     }
   },

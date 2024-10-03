@@ -9,8 +9,8 @@ const Post = (post) => {
   // these links need to go to the user profile page
 
   return (
-    <div data-wrapper className="border border-content-border rounded-2xl">
-      <div data-body className="p-4 flex gap-3">
+    <div className="border border-content-border rounded-2xl mb-4">
+      <div className="p-4 flex gap-3">
         <Link href="/" className="min-w-[40px]">
           <Image
             src="/images/avatar.png"
@@ -19,7 +19,7 @@ const Post = (post) => {
             height={40}
           />
         </Link>
-        <div data-content>
+        <div>
           <Link href="/" className="mb-1">
             <h4>USER FIRST AND LAST NAME GOES HERE</h4>
           </Link>
@@ -36,10 +36,19 @@ const Post = (post) => {
           )}
         </div>
       </div>
-      <div className="p-4 flex gap-6 text-secondary">
-        <span>LIKEICON - {reactions?.likes}</span>
-        <span>SHAREICON - {reactions?.dislikes}</span>
-        <span>VIEWSICON - {views}</span>
+      <div className="p-4 flex gap-6 text-secondary border-t border-content-border">
+        <span className="flex gap-1">
+          <Image src="/icons/like.svg" width={16} height={16} />
+          {reactions?.likes}
+        </span>
+        <span className="flex gap-1">
+          <Image src="/icons/share.svg" width={16} height={16} />
+          {reactions?.dislikes}
+        </span>
+        <span className="flex gap-1">
+          <Image src="/icons/views.svg" width={16} height={16} />
+          {views}
+        </span>
       </div>
     </div>
   );
