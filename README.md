@@ -35,3 +35,7 @@ There are several issues in the [Figma mockup](https://www.figma.com/design/yKiO
 1. Incorrect sequential order of headings. h3 is used first, followed by an h2. This is not semantically correct.
 2. Suggested posts title text color is black. It shoud be either text primary or text secondary color as is used in the rest of the design.
 3. I'm using Roboto Flex as the font defined in the mockup, but it looks different in my project. I think this may be due to the 'wdth' font variation setting in Figma, which I've tried to apply but don't seem to be working.
+
+## Time spent:
+
+03/10/2024 +- 3 hours
