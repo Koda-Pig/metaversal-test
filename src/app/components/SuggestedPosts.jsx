@@ -1,5 +1,5 @@
 import { limitItems } from "../lib";
-import PostCard from "./PostCard";
+import Post from "./Post";
 
 const sortPostsByLikeCount = (posts) => {
   return posts.sort((a, b) => b.reactions.likes - a.reactions.likes);
@@ -15,7 +15,7 @@ const SuggestedPosts = ({ posts }) => {
         Suggested posts
       </h2>
       {limitedPosts?.map((post) => (
-        <PostCard key={post.id} post={post} />
+        <Post key={post.id} post={post} />
       ))}
     </section>
   );

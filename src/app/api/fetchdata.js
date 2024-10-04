@@ -10,8 +10,6 @@
  * @returns {Promise<void>} The fetched data.
  */
 
-// generate types for userId, url, limit, skip
-
 export const fetchData = async ({ dataType, userId, limit, skip }) => {
   let url = `https://dummyjson.com/${dataType}`;
 

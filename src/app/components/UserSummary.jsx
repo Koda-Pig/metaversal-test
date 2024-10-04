@@ -1,14 +1,16 @@
 import Image from "next/image";
 import Link from "next/link";
 import Button from "./Button";
+import Card from "./Card";
 
-const UserCardSmall = ({ user }) => {
-  // these links need to go to the user profile page
+const UserSummary = ({ user }) => {
+  // these links need to go to the user profile page which has not been built yet
+  console.log("user id:", user.id);
 
   return (
-    <div className="shadow-default border border-content-border rounded-2xl bg-white">
+    <Card>
       <div className="p-4 flex gap-3 items-center">
-        <Link href="/" className="min-w-[40px]">
+        <Link href={`/users/${user.username}`} className="min-w-[40px]">
           <Image
             src="/images/avatar.png"
             alt="placeholder avatar"
@@ -26,8 +28,8 @@ const UserCardSmall = ({ user }) => {
         </div>
         <Button label="Follow" classes="ml-auto" type="primary" />
       </div>
-    </div>
+    </Card>
   );
 };
 
-export default UserCardSmall;
+export default UserSummary;

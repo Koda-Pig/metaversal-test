@@ -1,13 +1,14 @@
 import Image from "next/image";
 import Link from "next/link";
+import Card from "./Card";
 
-const PostCard = ({ post }) => {
+const Post = ({ post }) => {
   const { id, title, body, tags, reactions, views, userId } = post;
 
   // these links need to go to the user profile page
 
   return (
-    <div className="border border-content-border rounded-2xl mb-4 bg-white">
+    <Card>
       <div className="p-4 flex gap-3">
         <Link href="/" className="min-w-[40px]">
           <Image
@@ -58,8 +59,8 @@ const PostCard = ({ post }) => {
           {views}
         </span>
       </div>
-    </div>
+    </Card>
   );
 };
 
-export default PostCard;
+export default Post;
