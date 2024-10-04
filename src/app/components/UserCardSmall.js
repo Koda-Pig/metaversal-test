@@ -1,17 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
-
-// need to fetch user post count as well
-const sortUsersByPostCount = (users) => {
-  return users.sort((a, b) => b.reactions.likes - a.reactions.likes);
-};
+import Button from "./Button";
 
 const UserCardSmall = ({ user }) => {
   // these links need to go to the user profile page
 
   return (
-    <div className="border border-content-border rounded-2xl mb-4">
-      <div className="p-4 flex gap-3">
+    <div className="shadow-default border border-content-border rounded-2xl bg-white">
+      <div className="p-4 flex gap-3 items-center">
         <Link href="/" className="min-w-[40px]">
           <Image
             src="/images/avatar.png"
@@ -26,8 +22,9 @@ const UserCardSmall = ({ user }) => {
               {user.firstName} {user.lastName}
             </h4>
           </Link>
-          <p className="text-secondary text-xs mb-1">@{user.username}</p>
+          <p className="text-secondary text-xs mb-1 ">@{user.username}</p>
         </div>
+        <Button label="Follow" classes="ml-auto" type="primary" />
       </div>
     </div>
   );

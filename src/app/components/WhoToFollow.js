@@ -10,14 +10,14 @@ const WhoToFollow = ({ users }) => {
   const limitedUsers = limitItems(sortedUsers, 4);
 
   return (
-    <>
+    <section>
       <h2 className="text-black font-extrabold text-2xl mb-4">Who to follow</h2>
-      <section>
+      <div className="grid sm:grid-cols-auto-fill-100 gap-4">
         {limitedUsers?.map((user) => (
           <UserCardSmall key={user.id} user={user} />
         ))}
-      </section>
-    </>
+      </div>
+    </section>
   );
 };
 

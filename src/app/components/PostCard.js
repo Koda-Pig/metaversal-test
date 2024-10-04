@@ -1,13 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
 
-const Post = ({ post }) => {
+const PostCard = ({ post }) => {
   const { id, title, body, tags, reactions, views, userId } = post;
 
   // these links need to go to the user profile page
 
   return (
-    <div className="border border-content-border rounded-2xl mb-4">
+    <div className="border border-content-border rounded-2xl mb-4 bg-white">
       <div className="p-4 flex gap-3">
         <Link href="/" className="min-w-[40px]">
           <Image
@@ -26,7 +26,7 @@ const Post = ({ post }) => {
           {tags?.length > 0 && (
             <div className="flex gap-3 text-xs">
               {tags.map((tag, index) => (
-                <span key={`${tag}-${index}`} className="text-link">
+                <span key={`${tag}-${index}`} className="text-blue">
                   #{tag}
                 </span>
               ))}
@@ -62,4 +62,4 @@ const Post = ({ post }) => {
   );
 };
 
-export default Post;
+export default PostCard;

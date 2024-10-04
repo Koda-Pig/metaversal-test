@@ -39,3 +39,25 @@ There are several issues in the [Figma mockup](https://www.figma.com/design/yKiO
 ## Time spent:
 
 03/10/2024 +- 3 hours
+
+## Comments and whining
+
+- Why can't you use `auto-fill` for `grid-template-columns` in Tailwind? Waaaaaah!
+
+```
+grid-template-columns: repeat(auto-fill, minmax(370px, 1fr));
+```
+
+- I really like the space-y utility in Tailwind. Does seem like a lot more code that just using `display:grid;gap:1rem` though.
+
+```
+.space-y-12 > :not([hidden]) ~ :not([hidden]) {
+    --tw-space-y-reverse: 0;
+    margin-top: calc(3rem* calc(1 - var(--tw-space-y-reverse)));
+    margin-bottom: calc(3rem* var(--tw-space-y-reverse));
+}
+```
+
+## Other improvements I'd like to do
+
+- Add a toggle to text-ellipses the post content;
