@@ -52,10 +52,10 @@ const Home = async () => {
       <header className="bg-white shadow h-14 grid place-items-center px-2">
         <h3 className="text-center text-lg font-extrabold">Feed</h3>
       </header>
-      <main className="px-4 pt-8 space-y-12 max-w-[668px] mx-auto">
+      <main className="px-4 py-8 space-y-12 max-w-[668px] mx-auto">
+        <SuggestedPosts posts={posts} />
+        <WhoToFollow users={usersWithPosts} />
         <RecentPosts posts={posts} />
-        {/* <SuggestedPosts posts={posts} /> */}
-        {/* <WhoToFollow users={usersWithPosts} /> */}
       </main>
     </>
   );
