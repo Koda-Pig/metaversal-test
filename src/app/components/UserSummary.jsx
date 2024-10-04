@@ -5,7 +5,7 @@ import Card from "./Card";
 
 const UserSummary = ({ user }) => {
   // these links need to go to the user profile page which has not been built yet
-  console.log("user id:", user.id);
+  // console.log("user id:", user.id);
 
   return (
     <Card>

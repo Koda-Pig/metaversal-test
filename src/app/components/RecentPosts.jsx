@@ -1,66 +1,49 @@
-import Image from "next/image";
-import Link from "next/link";
+"use client";
 
-const RecentPosts = ({ post }) => {
-  const { id, title, body, tags, reactions, views, userId } = post;
+import { useState, useEffect, useRef } from "react";
+import Post from "./Post";
+import Section from "./Section";
+import { limitItems } from "../lib";
 
-  // these links need to go to the user profile page
+const RecentPosts = ({ posts }) => {
+  const bottomRef = useRef(null);
+  const [displayedPosts, setDisplayedPosts] = useState(limitItems(posts, 5));
 
-  console.log(post);
+  useEffect(() => {
+    if (!bottomRef.current) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          setTimeout(() => {
+            setDisplayedPosts((prev) => {
+              const nextPosts = posts.slice(prev.length, prev.length + 5);
+              return [...prev, ...nextPosts];
+            });
+          }, 2000);
+        }
+      },
+      {
+        threshold: 0.5
+      }
+    );
+
+    observer.observe(bottomRef.current);
+
+    return () => {
+      observer.unobserve(bottomRef.current);
+    };
+  }, [posts]);
 
   return (
-    <div className="border border-content-border rounded-2xl mb-4 bg-white">
-      <div className="p-4 flex gap-3">
-        <Link href="/" className="min-w-[40px]">
-          <Image
-            src="/images/avatar.png"
-            alt="placeholder avatar"
-            width={40}
-            height={40}
-          />
-        </Link>
-        <div>
-          <Link href="/" className="mb-1">
-            <h4>USER FIRST AND LAST NAME GOES HERE</h4>
-          </Link>
-          <p className="text-secondary text-xs mb-1">@USER TAG GOES HERE</p>
-          <p className="mt-4 mb-3 text-secondary">{body}</p>
-          {tags?.length > 0 && (
-            <div className="flex gap-3 text-xs">
-              {tags.map((tag, index) => (
-                <span key={`${tag}-${index}`} className="text-blue">
-                  #{tag}
-                </span>
-              ))}
-            </div>
-          )}
-        </div>
+    <Section title="Recent posts">
+      <div className="space-y-4">
+        {displayedPosts?.map((post) => (
+          <Post key={post.id} post={post} />
+        ))}
+        <span id="bottom-of-page" ref={bottomRef}></span>
       </div>
-      <div className="p-4 flex gap-6 text-secondary border-t border-content-border">
-        <span className="flex gap-1">
-          <Image src="/icons/like.svg" alt="like icon" width={16} height={16} />
-          {reactions?.likes}
-        </span>
-        <span className="flex gap-1">
-          <Image
-            src="/icons/share.svg"
-            alt="share icon"
-            width={16}
-            height={16}
-          />
-          {reactions?.dislikes}
-        </span>
-        <span className="flex gap-1">
-          <Image
-            src="/icons/views.svg"
-            alt="views icon"
-            width={16}
-            height={16}
-          />
-          {views}
-        </span>
-      </div>
-    </div>
+    </Section>
   );
 };
 

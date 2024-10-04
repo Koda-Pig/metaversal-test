@@ -1,5 +1,6 @@
 import { limitItems } from "../lib";
 import UserSummary from "./UserSummary";
+import Section from "./Section";
 
 const sortUsersByPostCount = (users) => {
   return users.sort((a, b) => b.posts.total - a.posts.total);
@@ -10,14 +11,13 @@ const WhoToFollow = ({ users }) => {
   const limitedUsers = limitItems(sortedUsers, 4);
 
   return (
-    <section>
-      <h2 className="text-black font-extrabold text-2xl mb-4">Who to follow</h2>
+    <Section title="Who to follow">
       <div className="grid sm:grid-cols-auto-fill-100 gap-4">
         {limitedUsers?.map((user) => (
           <UserSummary key={user.id} user={user} />
         ))}
       </div>
-    </section>
+    </Section>
   );
 };
 

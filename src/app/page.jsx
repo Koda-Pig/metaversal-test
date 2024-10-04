@@ -2,19 +2,20 @@ import { fetchData } from "./api/fetchdata";
 import Button from "./components/Button";
 import SuggestedPosts from "./components/SuggestedPosts";
 import WhoToFollow from "./components/WhoToFollow";
+import RecentPosts from "./components/RecentPosts";
 
 const Home = async () => {
-  const suggestedPostsData = await fetchData({
+  const postsData = await fetchData({
     dataType: "posts"
   });
-  const suggestedPosts = suggestedPostsData.posts;
+  const posts = postsData.posts;
 
   const userData = await fetchData({
     dataType: "users"
   });
   const users = userData.users;
 
-  if (!users?.length || !suggestedPosts?.length) {
+  if (!users?.length || !posts?.length) {
     console.warn("No users and/ or posts found");
 
     return (
@@ -52,8 +53,9 @@ const Home = async () => {
         <h3 className="text-center text-lg font-extrabold">Feed</h3>
       </header>
       <main className="px-4 pt-8 space-y-12 max-w-[668px] mx-auto">
-        <SuggestedPosts posts={suggestedPosts} />
-        <WhoToFollow users={usersWithPosts} />
+        <RecentPosts posts={posts} />
+        {/* <SuggestedPosts posts={posts} /> */}
+        {/* <WhoToFollow users={usersWithPosts} /> */}
       </main>
     </>
   );

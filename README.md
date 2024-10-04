@@ -60,4 +60,5 @@ grid-template-columns: repeat(auto-fill, minmax(370px, 1fr));
 
 ## Other improvements I'd like to do
 
-- Add a toggle to text-ellipses the post content;
+- Add a read more to text-ellipses the post content;
+- Add toggle for dark mode
