@@ -1,10 +1,11 @@
 import { fetchData } from "./api/fetchdata";
 import Button from "./components/Button";
 import SuggestedPosts from "./components/SuggestedPosts";
+import Header from "./components/Header";
 import WhoToFollow from "./components/WhoToFollow";
 import RecentPosts from "./components/RecentPosts";
 
-const Home = async () => {
+const Page = async () => {
   const postsData = await fetchData({
     dataType: "posts"
   });
@@ -48,10 +49,7 @@ const Home = async () => {
 
   return (
     <>
-      {/* Need to check this shadow fits mockups exactly */}
-      <header className="bg-white shadow h-14 grid place-items-center px-2">
-        <h3 className="text-center text-lg font-extrabold">Feed</h3>
-      </header>
+      <Header title="Feed" />
       <main className="px-4 py-8 space-y-12 max-w-[668px] mx-auto">
         <SuggestedPosts posts={posts} />
         <WhoToFollow users={usersWithPosts} />
@@ -61,4 +59,4 @@ const Home = async () => {
   );
 };
 
-export default Home;
+export default Page;
