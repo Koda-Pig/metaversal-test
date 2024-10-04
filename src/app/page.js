@@ -1,20 +1,47 @@
-import { fetchPostData } from "./api/fetchPostData";
-import { fetchUserData } from "./api/fetchUserData";
-import { fetchUserPosts } from "./api/fetchUserPosts";
+import { fetchData } from "./api/fetchdata";
+import Button from "./components/Button";
 import SuggestedPosts from "./components/SuggestedPosts";
 import WhoToFollow from "./components/WhoToFollow";
 
 const Home = async () => {
-  const suggestedPostsData = await fetchPostData();
+  const suggestedPostsData = await fetchData({
+    dataType: "posts"
+  });
   const suggestedPosts = suggestedPostsData.posts;
 
-  const userData = await fetchUserData();
+  const userData = await fetchData({
+    dataType: "users"
+  });
   const users = userData.users;
+
+  if (!users?.length || !suggestedPosts?.length) {
+    console.warn("No users and/ or posts found");
+
+    return (
+      <div className="p-6">
+        <h1 className="text-center p-5 text-2xl font-bold">Error</h1>
+        <Button
+          label="Try again"
+          classes="mx-auto"
+          type="secondary"
+          action="reload"
+        />
+      </div>
+    );
+  }
 
   const usersWithPosts = await Promise.all(
     users.map(async (user) => {
-      const posts = await fetchUserPosts(user.id);
-      return { ...user, posts };
+      try {
+        const posts = await fetchData({
+          userId: user.id,
+          dataType: "posts"
+        });
+        return { ...user, posts };
+      } catch {
+        console.warn(`No posts found for user ${user.id}`);
+        return { ...user, posts: [] };
+      }
     })
   );
 

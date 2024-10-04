@@ -1,4 +1,6 @@
-const Button = ({ label, classes = "", type = "primary" }) => {
+"use client";
+
+const Button = ({ action = null, label, classes = "", type = "primary" }) => {
   const classNames = [classes];
 
   // primary button should have this gradient:
@@ -49,6 +51,13 @@ const Button = ({ label, classes = "", type = "primary" }) => {
 
   return (
     <button
+      onClick={() => {
+        if (action === null) return;
+
+        if (action === "reload") {
+          window.location.reload();
+        }
+      }}
       className={`
 				${classNames.join(" ")}
 				grid
