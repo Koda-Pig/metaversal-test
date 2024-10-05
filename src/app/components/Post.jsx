@@ -1,21 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
-import Card from "./Card";
+import Card from "@/app/components/Card";
 
 const Post = ({ post, user }) => {
   const { body, tags, reactions, views, userId } = post;
-
+  const { firstName, lastName, username } = user;
   const url = `/profile/${userId}`;
-
-  let firstName = "Name not";
-  let lastName = "provided";
-  let username = "username not provided";
-
-  if (user) {
-    firstName = user.firstName;
-    lastName = user.lastName;
-    username = user.username;
-  }
 
   return (
     <Card>
@@ -29,13 +19,15 @@ const Post = ({ post, user }) => {
           />
         </Link>
         <div>
-          <Link href={url} className="mb-1">
-            <h4>
+          <Link href={url}>
+            <h4 className="mb-1 leading-6">
               {firstName} {lastName}
             </h4>
+            <p className="text-secondary text-xs mb-1">@{username}</p>
           </Link>
-          <p className="text-secondary text-xs mb-1">@{username}</p>
+
           <p className="mt-4 mb-3 text-secondary">{body}</p>
+
           {tags?.length > 0 && (
             <div className="flex gap-3 text-xs">
               {tags.map((tag, index) => (
@@ -47,6 +39,7 @@ const Post = ({ post, user }) => {
           )}
         </div>
       </div>
+
       <div className="p-4 flex gap-6 text-secondary border-t border-content-border">
         <span className="flex gap-1">
           <Image src="/icons/like.svg" alt="like icon" width={16} height={16} />

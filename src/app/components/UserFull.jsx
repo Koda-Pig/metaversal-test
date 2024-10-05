@@ -1,6 +1,6 @@
 import Image from "next/image";
-import Button from "./Button";
-import Card from "./Card";
+import Button from "@/app/components/Button";
+import Card from "@/app/components/Card";
 
 const UserFull = ({ user }) => {
   const { firstName, lastName, username, address, company } = user;

@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-import Button from "./Button";
-import Card from "./Card";
+import Button from "@/app/components/Button";
+import Card from "@/app/components/Card";
 
 const UserSummary = ({ user }) => {
   return (

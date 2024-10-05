@@ -1,6 +1,6 @@
 import { limitItems } from "@/app/lib";
-import UserSummary from "./UserSummary";
-import Section from "./Section";
+import UserSummary from "@/app/components/UserSummary";
+import Section from "@/app/components/Section";
 
 const sortUsersByPostCount = (users) => {
   return users.sort((a, b) => b.posts.total - a.posts.total);

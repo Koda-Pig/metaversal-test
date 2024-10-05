@@ -1,10 +1,10 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import Post from "./Post";
-import Section from "./Section";
-import Spinner from "./Spinner";
-import { limitItems } from "@/app/lib";
+import Post from "@/app/components/Post";
+import Section from "@/app/components/Section";
+import Spinner from "@/app/components/Spinner";
+import { limitItems } from "../lib";
 
 const ARTIFICIAL_DELAY = 1000;
 

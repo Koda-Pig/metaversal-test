@@ -1,9 +1,9 @@
 import { fetchData } from "@/app/api/fetchdata";
-import Button from "./components/Button";
-import SuggestedPosts from "./components/SuggestedPosts";
-import Header from "./components/Header";
-import WhoToFollow from "./components/WhoToFollow";
-import RecentPosts from "./components/RecentPosts";
+import Button from "@/app/components/Button";
+import SuggestedPosts from "@/app/components/SuggestedPosts";
+import Header from "@/app/components/Header";
+import WhoToFollow from "@/app/components/WhoToFollow";
+import RecentPosts from "@/app/components/RecentPosts";
 
 const Page = async () => {
   const postsData = await fetchData({
