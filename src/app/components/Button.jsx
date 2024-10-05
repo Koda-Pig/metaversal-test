@@ -57,15 +57,11 @@ const Button = ({ action = null, label, classes = "", type = "primary" }) => {
       }}
       className={`
 				${classNames.join(" ")}
-				grid
-				place-items-center
-				rounded-full
-				leading-4
-				min-h-[35px]
-				transition-colors
-				py-2
-				px-3.5
-				h-min
+        px-3.5 py-2
+        h-min
+        min-h-[35px] transition-colors
+				grid place-items-center
+        rounded-full leading-4
 			`}
       type="button"
     >

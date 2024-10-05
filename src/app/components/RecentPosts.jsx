@@ -9,6 +9,7 @@ import { limitItems } from "../lib";
 const ARTIFICIAL_DELAY = 1000;
 
 const RecentPosts = ({ posts }) => {
+  console.log(posts);
   const bottomRef = useRef(null);
   const [displayedPosts, setDisplayedPosts] = useState(limitItems(posts, 5));
   const morePostsToShow = displayedPosts.length < posts.length;
@@ -48,9 +49,13 @@ const RecentPosts = ({ posts }) => {
   return (
     <Section title="Recent posts">
       <div className="space-y-4">
-        {displayedPosts?.map(({ post, user }) => (
+        {/* {displayedPosts?.map(({ post, user }) => (
           <Post key={post.id} post={post} user={user} />
-        ))}
+        ))} */}
+        {displayedPosts?.map(({ post, user }) => {
+          // return console.log(post, user);
+          return <Post key={post.id} post={post} user={user} />;
+        })}
         <span id="bottom-of-page" ref={bottomRef}></span>
         {morePostsToShow ? (
           <Spinner />

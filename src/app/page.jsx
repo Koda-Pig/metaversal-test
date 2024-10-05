@@ -1,9 +1,11 @@
+import { Suspense } from "react";
 import { fetchData } from "@/app/api/fetchdata";
 import Button from "@/app/components/Button";
 import SuggestedPosts from "@/app/components/SuggestedPosts";
 import Header from "@/app/components/Header";
 import WhoToFollow from "@/app/components/WhoToFollow";
 import RecentPosts from "@/app/components/RecentPosts";
+import Spinner from "./components/Spinner";
 
 const Page = async () => {
   const postsData = await fetchData({
@@ -68,7 +70,9 @@ const Page = async () => {
       <main className="px-4 py-8 space-y-12 max-w-[668px] mx-auto">
         <SuggestedPosts posts={postsWithUsers} />
         <WhoToFollow users={usersWithPosts} />
-        <RecentPosts posts={postsWithUsers} />
+        <Suspense fallback={<Spinner />}>
+          <RecentPosts posts={postsWithUsers} />
+        </Suspense>
       </main>
     </>
   );
