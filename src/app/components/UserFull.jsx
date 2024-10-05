@@ -1,14 +1,10 @@
-"use client";
 import Image from "next/image";
-import Link from "next/link";
 import Button from "./Button";
 import Card from "./Card";
 
 const UserFull = ({ user }) => {
   const { firstName, lastName, username, address, company } = user;
   const { department } = company;
-
-  console.log(user);
 
   return (
     <Card>

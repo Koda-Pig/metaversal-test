@@ -1,4 +1,4 @@
-import { limitItems } from "../lib";
+import { limitItems } from "@/app/lib";
 import UserSummary from "./UserSummary";
 import Section from "./Section";
 

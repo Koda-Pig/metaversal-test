@@ -2,10 +2,20 @@ import Image from "next/image";
 import Link from "next/link";
 import Card from "./Card";
 
-const Post = ({ post }) => {
+const Post = ({ post, user }) => {
   const { body, tags, reactions, views, userId } = post;
 
   const url = `/profile/${userId}`;
+
+  let firstName = "Name not";
+  let lastName = "provided";
+  let username = "username not provided";
+
+  if (user) {
+    firstName = user.firstName;
+    lastName = user.lastName;
+    username = user.username;
+  }
 
   return (
     <Card>
@@ -20,9 +30,11 @@ const Post = ({ post }) => {
         </Link>
         <div>
           <Link href={url} className="mb-1">
-            <h4>USER FIRST AND LAST NAME GOES HERE</h4>
+            <h4>
+              {firstName} {lastName}
+            </h4>
           </Link>
-          <p className="text-secondary text-xs mb-1">@USER TAG GOES HERE</p>
+          <p className="text-secondary text-xs mb-1">@{username}</p>
           <p className="mt-4 mb-3 text-secondary">{body}</p>
           {tags?.length > 0 && (
             <div className="flex gap-3 text-xs">

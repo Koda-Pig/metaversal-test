@@ -2,37 +2,57 @@
  * Fetch data from the API.
  *
  * @param {Object} params - The parameters for the fetch request.
- * @param {number} params.userId - The ID of the user.
- * @param {'posts' | 'users' | 'user'} params.dataType - posts or users or user.
+ * @param {number} [params.userId] - The ID of the user (optional).
+ * @param {'posts' | 'users'} params.dataType - Type of data to fetch.
  * @param {number} [params.limit] - The limit of items to fetch (optional).
  * @param {number} [params.skip] - The number of items to skip (optional).
+ * @param {string} [params.sortBy] - The field to sort the data by (optional).
  *
- * @returns {Promise<void>} The fetched data.
+ * @returns {Promise<Object>} The fetched data.
  */
+export const fetchData = async ({ dataType, userId, limit, skip, sortBy }) => {
+  const baseUrl = "https://dummyjson.com/";
 
-export const fetchData = async ({ dataType, userId, limit, skip }) => {
-  let url = `https://dummyjson.com/${dataType}`;
-
-  if (userId && dataType === "posts") {
-    url += `/user/${userId}`;
-  } else if (userId && dataType === "users") {
-    url += `/${userId}`;
+  let path = "";
+  if (dataType === "posts") {
+    if (userId) {
+      path = `posts/user/${userId}`;
+    } else {
+      path = "posts";
+    }
+  } else if (dataType === "users") {
+    if (userId) {
+      path = `users/${userId}`;
+    } else {
+      path = "users";
+    }
+  } else {
+    throw new Error(`Unsupported dataType: ${dataType}`);
   }
 
-  if (limit && skip) {
-    url += `?limit=${limit}&skip=${skip}`;
-  } else if (limit) {
-    url += `?limit=${limit}`;
-  } else if (skip) {
-    url += `?skip=${skip}`;
+  // Create a URL object
+  const url = new URL(path, baseUrl);
+
+  // Append query parameters
+  if (limit !== undefined && limit !== null) {
+    url.searchParams.append("limit", limit);
+  }
+  if (skip !== undefined && skip !== null) {
+    url.searchParams.append("skip", skip);
+  }
+  if (sortBy) {
+    url.searchParams.append("sortBy", sortBy);
   }
 
   try {
-    const response = await fetch(url);
+    const response = await fetch(url.toString());
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
     const fetchedData = await response.json();
     return fetchedData;
   } catch (error) {
-    console.error("Unable to fetch data: ", error);
-    return error;
+    console.error("Unable to fetch data:", error);
+    throw error;
   }
 };

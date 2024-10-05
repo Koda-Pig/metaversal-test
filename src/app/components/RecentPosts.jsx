@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import Post from "./Post";
 import Section from "./Section";
 import Spinner from "./Spinner";
-import { limitItems } from "../lib";
+import { limitItems } from "@/app/lib";
 
 const ARTIFICIAL_DELAY = 1000;
 
@@ -33,7 +33,7 @@ const RecentPosts = ({ posts }) => {
         }, ARTIFICIAL_DELAY);
       },
       {
-        threshold: 0.5
+        threshold: 0.5,
       }
     );
 
@@ -48,8 +48,8 @@ const RecentPosts = ({ posts }) => {
   return (
     <Section title="Recent posts">
       <div className="space-y-4">
-        {displayedPosts?.map((post) => (
-          <Post key={post.id} post={post} />
+        {displayedPosts?.map(({ post, user }) => (
+          <Post key={post.id} post={post} user={user} />
         ))}
         <span id="bottom-of-page" ref={bottomRef}></span>
         {morePostsToShow ? (

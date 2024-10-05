@@ -1,4 +1,4 @@
-import { fetchData } from "./api/fetchdata";
+import { fetchData } from "@/app/api/fetchdata";
 import Button from "./components/Button";
 import SuggestedPosts from "./components/SuggestedPosts";
 import Header from "./components/Header";
@@ -7,12 +7,12 @@ import RecentPosts from "./components/RecentPosts";
 
 const Page = async () => {
   const postsData = await fetchData({
-    dataType: "posts"
+    dataType: "posts",
   });
   const posts = postsData.posts;
 
   const userData = await fetchData({
-    dataType: "users"
+    dataType: "users",
   });
   const users = userData.users;
 
@@ -32,12 +32,27 @@ const Page = async () => {
     );
   }
 
+  const postsWithUsers = await Promise.all(
+    posts.map(async (post) => {
+      try {
+        const user = await fetchData({
+          userId: post.userId,
+          dataType: "users",
+        });
+        return { post, user };
+      } catch {
+        console.warn(`No user found for post ${post.id}`);
+        return { post, user: null };
+      }
+    })
+  );
+
   const usersWithPosts = await Promise.all(
     users.map(async (user) => {
       try {
         const posts = await fetchData({
           userId: user.id,
-          dataType: "posts"
+          dataType: "posts",
         });
         return { ...user, posts };
       } catch {
@@ -51,9 +66,9 @@ const Page = async () => {
     <>
       <Header title="Feed" />
       <main className="px-4 py-8 space-y-12 max-w-[668px] mx-auto">
-        <SuggestedPosts posts={posts} />
+        <SuggestedPosts posts={postsWithUsers} />
         <WhoToFollow users={usersWithPosts} />
-        <RecentPosts posts={posts} />
+        <RecentPosts posts={postsWithUsers} />
       </main>
     </>
   );

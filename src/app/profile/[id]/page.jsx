@@ -7,13 +7,13 @@ const Page = async ({ params }) => {
   const { id } = params;
 
   const postsData = await fetchData({
-    dataType: "posts"
+    dataType: "posts",
   });
   const allPosts = postsData.posts;
 
   const userProfile = await fetchData({
     userId: id,
-    dataType: "users"
+    dataType: "users",
   });
 
   return (
