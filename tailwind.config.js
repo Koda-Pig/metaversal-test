@@ -3,7 +3,7 @@ module.exports = {
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/app/**/*.{js,ts,jsx,tsx,mdx}"
+    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
     extend: {
@@ -20,15 +20,20 @@ module.exports = {
         purple: "#811AB8",
         blue: "#4426D9",
         "light-blue": "#0077CC",
-        "light-blue-50": "#E5F4FF"
+        "light-blue-50": "#E5F4FF",
+        "grey-cold-50": "#F1F3F4",
+        "off-white": "#FFFAF5",
       },
       gridTemplateColumns: {
-        "auto-fill-100": "repeat(auto-fill, minmax(326px, 1fr))"
+        "auto-fill-100": "repeat(auto-fill, minmax(326px, 1fr))",
       },
       boxShadow: {
-        default: "0px 1px 3px #1A1A1A14"
-      }
-    }
+        default: "0px 1px 3px #1A1A1A14",
+      },
+      borderRadius: {
+        "2xl-inherit": "calc(1rem - 1px)",
+      },
+    },
   },
-  plugins: []
+  plugins: [],
 };
