@@ -68,6 +68,7 @@ const Page = async () => {
   return (
     <>
       <Header title="Feed" />
+
       <Main>
         <SuggestedPosts posts={postsWithUsers} />
         <WhoToFollow users={usersWithPosts} />
