@@ -26,6 +26,7 @@ module.exports = {
       },
       gridTemplateColumns: {
         "auto-fill-100": "repeat(auto-fill, minmax(326px, 1fr))",
+        "reserve-space": "120px auto",
       },
       boxShadow: {
         default: "0px 1px 3px #1A1A1A14",

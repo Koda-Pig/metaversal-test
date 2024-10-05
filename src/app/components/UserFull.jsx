@@ -29,7 +29,7 @@ const UserFull = ({ user }) => {
         `}
       >
         <Image
-          className="rounded-full border-[4px] border-white shadow absolute"
+          className="rounded-full border-[4px] border-white shadow absolute lg:top-10 lg:left-6"
           src="/images/avatar-large.png"
           alt="placeholder avatar"
           width={120}
@@ -37,39 +37,54 @@ const UserFull = ({ user }) => {
         />
       </div>
 
-      <div className="px-4 pb-6 text-center mt-12">
-        <h1 className="text-[30px] mb-2">
+      <div
+        className={`
+          px-4
+          pb-6
+          text-center
+          mt-12
+          lg:mt-6
+          lg:text-left
+          lg:grid
+          lg:pl-40
+        `}
+      >
+        <h1 className="text-[30px] leading-[30px] mb-2">
           {firstName} {lastName}
         </h1>
 
-        <p className="text-secondary mb-3">@{username}</p>
+        <div className="lg:flex lg:align-center lg:gap-3 lg:mb-3">
+          <p className="leading-[19px] text-secondary mb-3 lg:m-0">
+            @{username}
+          </p>
 
-        <p className="flex items-center justify-center gap-1 mb-3">
-          <Image
-            className=""
-            src="/icons/map-pin.svg"
-            alt="placeholder avatar"
-            width={12}
-            height={15}
-          />
-          <span className="text-secondary">
-            {address.city}, {address.state}
-          </span>
-        </p>
+          <p className="flex items-center justify-center lg:justify-start gap-1 mb-3 lg:m-0">
+            <Image
+              className=""
+              src="/icons/map-pin.svg"
+              alt="placeholder avatar"
+              width={12}
+              height={15}
+            />
+            <span className="text-secondary">
+              {address.city}, {address.state}
+            </span>
+          </p>
+        </div>
 
-        <p className="text-light-blue bg-light-blue-50 mx-auto mb-6 px-3 w-max font-bold grid place-items-center h-7 rounded-full">
+        <p className="text-light-blue bg-light-blue-50 mx-auto lg:mx-0 mb-6 px-3 w-max font-bold grid place-items-center h-7 rounded-full">
           {department}
         </p>
 
-        <div className="flex justify-center gap-3">
+        <div className="flex justify-center lg:justify-start gap-3">
           <div>
-            <h2>{posts.length}</h2>
+            <h2 className="text-start text-2xl">{posts.length}</h2>
             <span className="text-secondary text-xs">
               POST{posts.length !== 1 ? "S" : ""}
             </span>
           </div>
           <div>
-            <h2>{totalLikes}</h2>
+            <h2 className=" text-start text-2xl">{totalLikes}</h2>
             <span className="text-secondary text-xs">LIKES</span>
           </div>
         </div>
@@ -89,6 +104,8 @@ const UserFull = ({ user }) => {
           to-100%
           rounded-2xl-inherit
           rounded-t-none
+          lg:justify-start
+          lg:px-6
         `}
       >
         <Button label="Follow" type="primary" />

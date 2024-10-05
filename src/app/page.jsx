@@ -5,7 +5,8 @@ import SuggestedPosts from "@/app/components/SuggestedPosts";
 import Header from "@/app/components/Header";
 import WhoToFollow from "@/app/components/WhoToFollow";
 import RecentPosts from "@/app/components/RecentPosts";
-import Spinner from "./components/Spinner";
+import Spinner from "@/app/components/Spinner";
+import Main from "@/app/components/Main";
 
 const Page = async () => {
   const postsData = await fetchData({
@@ -67,13 +68,13 @@ const Page = async () => {
   return (
     <>
       <Header title="Feed" />
-      <main className="px-4 py-8 space-y-12 max-w-[668px] mx-auto">
+      <Main>
         <SuggestedPosts posts={postsWithUsers} />
         <WhoToFollow users={usersWithPosts} />
         <Suspense fallback={<Spinner />}>
           <RecentPosts posts={postsWithUsers} />
         </Suspense>
-      </main>
+      </Main>
     </>
   );
 };
