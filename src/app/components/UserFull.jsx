@@ -1,4 +1,3 @@
-"use client";
 import Image from "next/image";
 import Button from "@/app/components/Button";
 import Card from "@/app/components/Card";
@@ -12,7 +11,6 @@ const calculateTotalLikes = (posts) => {
 const UserFull = ({ user }) => {
   const { firstName, lastName, username, address, company, posts } = user;
   const { department } = company;
-
   const totalLikes = calculateTotalLikes(posts);
 
   return (
