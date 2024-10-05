@@ -3,14 +3,14 @@ import Link from "next/link";
 import Card from "./Card";
 
 const Post = ({ post }) => {
-  const { id, title, body, tags, reactions, views, userId } = post;
+  const { body, tags, reactions, views, userId } = post;
 
-  // these links need to go to the user profile page
+  const url = `/profile/${userId}`;
 
   return (
     <Card>
       <div className="p-4 flex gap-3">
-        <Link href="/" className="min-w-[40px]">
+        <Link href={url} className="min-w-[40px]">
           <Image
             src="/images/avatar.png"
             alt="placeholder avatar"
@@ -19,7 +19,7 @@ const Post = ({ post }) => {
           />
         </Link>
         <div>
-          <Link href="/" className="mb-1">
+          <Link href={url} className="mb-1">
             <h4>USER FIRST AND LAST NAME GOES HERE</h4>
           </Link>
           <p className="text-secondary text-xs mb-1">@USER TAG GOES HERE</p>

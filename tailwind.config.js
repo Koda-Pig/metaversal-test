@@ -14,10 +14,13 @@ module.exports = {
         primary: "#141c24",
         "primary-50": "#ECE9FB",
         secondary: "#5c6970",
+        "secondary-50": "#FDEDE7",
         "bg-primary": "#F9FAFA",
         pink: "#FF0073",
         purple: "#811AB8",
-        blue: "#4426D9"
+        blue: "#4426D9",
+        "light-blue": "#0077CC",
+        "light-blue-50": "#E5F4FF"
       },
       gridTemplateColumns: {
         "auto-fill-100": "repeat(auto-fill, minmax(326px, 1fr))"

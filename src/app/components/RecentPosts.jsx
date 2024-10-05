@@ -11,7 +11,7 @@ const ARTIFICIAL_DELAY = 1000;
 const RecentPosts = ({ posts }) => {
   const bottomRef = useRef(null);
   const [displayedPosts, setDisplayedPosts] = useState(limitItems(posts, 5));
-  const showSpinner = displayedPosts.length < posts.length;
+  const morePostsToShow = displayedPosts.length < posts.length;
 
   const addMorePosts = () => {
     setDisplayedPosts((prev) => {
@@ -40,6 +40,7 @@ const RecentPosts = ({ posts }) => {
     observer.observe(bottomRef.current);
 
     return () => {
+      if (!observer || !bottomRef?.current) return;
       observer.unobserve(bottomRef.current);
     };
   }, [posts]);
@@ -51,7 +52,14 @@ const RecentPosts = ({ posts }) => {
           <Post key={post.id} post={post} />
         ))}
         <span id="bottom-of-page" ref={bottomRef}></span>
-        {showSpinner && <Spinner />}
+        {morePostsToShow ? (
+          <Spinner />
+        ) : (
+          <p className="text-center text-gray-400">
+            You've seen <em>all</em> of the posts. Now stop scrolling and get
+            back to work!
+          </p>
+        )}
       </div>
     </Section>
   );

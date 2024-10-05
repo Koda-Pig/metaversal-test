@@ -24,6 +24,10 @@ This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-opti
 
 This project uses dummy data from [dummyjson.com](https://dummyjson.com/).
 
+Users are fetched from [https://dummyjson.com/docs/users](https://dummyjson.com/docs/users).
+
+Posts are fetched from [https://dummyjson.com/docs/posts](https://dummyjson.com/docs/posts).
+
 ## Deployment
 
 This project is deployed on Netlify at [https://deluxe-douhua-435825.netlify.app/](https://deluxe-douhua-435825.netlify.app/).
@@ -39,6 +43,7 @@ There are several issues in the [Figma mockup](https://www.figma.com/design/yKiO
 ## Time spent:
 
 03/10/2024 +- 3 hours
+04/10/2024 +- 5 hours
 
 ## Comments and whining
 

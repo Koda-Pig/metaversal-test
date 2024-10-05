@@ -53,10 +53,7 @@ const Button = ({ action = null, label, classes = "", type = "primary" }) => {
     <button
       onClick={() => {
         if (action === null) return;
-
-        if (action === "reload") {
-          window.location.reload();
-        }
+        if (action === "reload") window.location.reload();
       }}
       className={`
 				${classNames.join(" ")}
