@@ -3,6 +3,7 @@ import Header from "@/app/components/Header";
 import RecentPosts from "@/app/components/RecentPosts";
 import UserFull from "@/app/components/UserFull";
 import Main from "@/app/components/Main";
+import Section from "@/app/components/Section";
 import Spinner from "@/app/components/Spinner";
 
 const Page = async ({ params }) => {
@@ -17,7 +18,9 @@ const Page = async ({ params }) => {
         >
           <UserFull userId={id} />
         </Suspense>
-        <RecentPosts />
+        <Section title="Recent">
+          <RecentPosts />
+        </Section>
       </Main>
     </>
   );
