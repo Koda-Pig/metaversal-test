@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import Post from "@/app/components/Post";
 import Spinner from "@/app/components/Spinner";
 import ErrorMessage from "@/app/components/ErrorMessage";
-import { limitItems, addUsersToPosts } from "@/app/lib";
+import { addUsersToPosts } from "@/app/lib";
 import { fetchData } from "@/app/api/fetchdata";
 
 const BATCH_SIZE = 5;
