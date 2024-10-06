@@ -28,7 +28,7 @@ const UserFull = async ({ userId }) => {
   const totalLikes = calculateTotalLikes(posts);
 
   return (
-    <Card>
+    <Card classNames="mt-8">
       <div
         className={`
           rounded-2xl-inherit
