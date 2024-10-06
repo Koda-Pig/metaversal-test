@@ -2,50 +2,63 @@
 
 import { useState, useEffect, useRef } from "react";
 import Post from "@/app/components/Post";
-import Section from "@/app/components/Section";
 import Spinner from "@/app/components/Spinner";
 import ErrorMessage from "@/app/components/ErrorMessage";
-import { limitItems } from "@/app/lib";
+import { limitItems, addUsersToPosts } from "@/app/lib";
+import { fetchData } from "@/app/api/fetchdata";
 
-const RecentPosts = ({ posts }) => {
+const RecentPosts = () => {
   const bottomRef = useRef(null);
-  const [displayedPosts, setDisplayedPosts] = useState(
-    posts?.length ? limitItems(posts, 5) : []
-  );
+  const [posts, setPosts] = useState([]);
+  const [displayedPosts, setDisplayedPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [showError, setShowError] = useState(false);
+  const [hasMorePosts, setHasMorePosts] = useState(true);
 
-  if (!posts?.length) {
-    return (
-      <Section title="Recent">
-        <ErrorMessage errorTitle="Error loading posts" />
-      </Section>
-    );
-  }
+  useEffect(() => {
+    const fetchInitialPosts = async () => {
+      try {
+        const postData = await fetchData({
+          dataType: "posts",
+          delay: 2000,
+        });
+        const initialPosts = postData?.posts ?? [];
+        const postsWithUsers = await addUsersToPosts(initialPosts);
+        setPosts(postsWithUsers);
+        setDisplayedPosts(limitItems(postsWithUsers, 5));
+      } catch (error) {
+        setShowError(true);
+        console.error("Error fetching posts", error);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-  const morePostsToShow = displayedPosts.length < posts.length;
+    fetchInitialPosts();
+  }, []);
 
   const addMorePosts = () => {
-    console.log("Adding more posts");
-    if (!morePostsToShow) return;
-    try {
-      setDisplayedPosts((prev) => {
-        const nextPosts = posts.slice(prev.length, prev.length + 5);
-        return [...prev, ...nextPosts];
-      });
-    } catch (error) {
-      setShowError(true);
-      console.error("Error adding more posts", error);
+    if (!hasMorePosts || showError) return;
+
+    const nextPosts = posts.slice(
+      displayedPosts.length,
+      displayedPosts.length + 5
+    );
+
+    if (nextPosts.length === 0) {
+      setHasMorePosts(false);
+      return;
     }
+
+    setDisplayedPosts((prev) => [...prev, ...nextPosts]);
   };
 
   useEffect(() => {
-    if (!bottomRef.current || showError) return;
+    if (!bottomRef.current || showError || !hasMorePosts) return;
 
     const observer = new IntersectionObserver(
       (entries) => {
-        if (!entries[0].isIntersecting) return;
-
-        addMorePosts();
+        if (entries[0].isIntersecting) addMorePosts();
       },
       {
         threshold: 0.5,
@@ -55,28 +68,24 @@ const RecentPosts = ({ posts }) => {
     observer.observe(bottomRef.current);
 
     return () => {
-      if (!observer || !bottomRef?.current) return;
-      observer.unobserve(bottomRef.current);
+      if (observer && bottomRef.current) {
+        observer.unobserve(bottomRef.current);
+      }
     };
-  }, [posts, showError, morePostsToShow]);
+  }, [displayedPosts, posts, showError, hasMorePosts]);
+
+  if (loading) return <Spinner />;
+
+  if (showError) return <ErrorMessage errorTitle="Error loading posts" />;
 
   return (
-    <Section title="Recent">
-      <div className="space-y-4">
-        {displayedPosts?.map(({ post, user }) => (
-          <Post key={post.id} post={post} user={user} />
-        ))}
-        {showError && <ErrorMessage errorTitle="Error loading posts" />}
-        <span id="bottom-of-page" ref={bottomRef} />
-        {morePostsToShow && !showError && <Spinner />}
-        {!morePostsToShow && !showError && (
-          <p className="text-center text-gray-400">
-            You've seen <em>all</em> of the posts. Now stop scrolling and get
-            back to work!
-          </p>
-        )}
-      </div>
-    </Section>
+    <div className="space-y-4">
+      {displayedPosts?.map(({ post, user }) => (
+        <Post key={post.id} post={post} user={user} />
+      ))}
+      <span id="bottom-of-page" ref={bottomRef} />
+      {hasMorePosts && !showError && <Spinner />}
+    </div>
   );
 };
 
