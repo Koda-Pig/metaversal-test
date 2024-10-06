@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Button from "@/app/components/Button";
 import Card from "@/app/components/Card";
+import ErrorMessage from "./ErrorMessage";
 import { fetchData } from "@/app/api/fetchdata";
 import { calculateTotalLikes } from "@/app/lib";
 
@@ -12,7 +13,7 @@ const UserFull = async ({ userId }) => {
   });
 
   if (!user) {
-    console.warn(`No user found for id ${id}`);
+    console.warn(`No user found for id ${userId}`);
     return <ErrorMessage errorTitle="User not found" />;
   }
 
