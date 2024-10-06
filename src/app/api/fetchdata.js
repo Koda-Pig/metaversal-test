@@ -11,6 +11,13 @@
  *
  * @returns {Promise<Object>} The fetched data.
  */
+import { LRUCache } from "lru-cache";
+
+const cache = new LRUCache({
+  max: 100, // max items in cache
+  ttl: 1000 * 60 * 60, // 1 hour time-to-live
+  allowStale: false,
+});
 
 export const fetchData = async ({
   dataType,
@@ -20,9 +27,20 @@ export const fetchData = async ({
   sortBy,
   delay = 0,
 }) => {
-  const baseUrl = "https://dummyjson.com/";
+  const cacheKey = `dummyjson_${dataType}-${
+    userId || "all"
+  }-limit${limit}-skip${skip}-sortBy${sortBy || "none"}`;
 
+  const cachedData = cache.get(cacheKey);
+
+  if (cachedData) {
+    console.info("Serving from LRU cache");
+    return cachedData;
+  }
+
+  const baseUrl = "https://dummyjson.com/";
   let path = "";
+
   if (dataType === "posts") {
     if (userId) {
       path = `posts/user/${userId}`;
@@ -50,7 +68,7 @@ export const fetchData = async ({
   if (skip !== undefined && skip !== null) {
     url.searchParams.append("skip", skip);
   }
-  if (limit !== undefined && limit !== null) {
+  if (delay !== undefined && delay !== null) {
     url.searchParams.append("delay", delay);
   }
   if (sortBy) {
@@ -59,7 +77,6 @@ export const fetchData = async ({
 
   try {
     const response = await fetch(url.toString(), {
-      cache: "force-cache",
       headers: {
         "Cache-Control":
           "public, max-age=3600, stale-while-revalidate=60, stale-if-error=60",
@@ -73,9 +90,16 @@ export const fetchData = async ({
     }
 
     // Empty response
-    if (response.status === 204) return null;
+    if (response.status === 204) {
+      console.warn("No content found in response");
+      return null;
+    }
 
     const fetchedData = await response.json();
+
+    // Store in cache
+    cache.set(cacheKey, fetchedData);
+
     return fetchedData;
   } catch (error) {
     console.error("Unable to fetch data:", error.message);

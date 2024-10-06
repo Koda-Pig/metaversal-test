@@ -44,7 +44,7 @@ This project uses HTTP caching to cache the response from the server for 1 hour.
 
 ### Caching data in storage
 
-Chose in-memory caching using `node-cache` to cache data in storage as it fits this project's use case and requirements. The cached data benefits all users, it deals with shared, short-lived data, and the data is not sensitive. Doesn't matter that the cache doesn't persist across function/server restarts.
+Chose in-memory caching using `lru-cache` to cache data in storage as it fits this project's use case and requirements. The cached data benefits all users, it deals with shared, short-lived data, and the data is not sensitive. Doesn't matter that the cache doesn't persist across function/server restarts.
 
 ## Issues found in mockup
 
