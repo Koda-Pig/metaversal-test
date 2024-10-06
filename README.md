@@ -34,7 +34,7 @@ This project is deployed on Netlify at [https://deluxe-douhua-435825.netlify.app
 
 ## Caching
 
-### HTTP caching
+### HTTPS request caching
 
 This project uses HTTP caching to cache the response from the server for 1 hour. The cache-control header is set to:
 
@@ -42,9 +42,9 @@ This project uses HTTP caching to cache the response from the server for 1 hour.
 "public, max-age=3600, stale-while-revalidate=60 stale-if-error=60"
 ```
 
-### Client caching
+### Caching data in storage
 
-TODO
+Chose in-memory caching using `node-cache` to cache data in storage as it fits this project's use case and requirements. The cached data benefits all users, it deals with shared, short-lived data, and the data is not sensitive. Doesn't matter that the cache doesn't persist across function/server restarts.
 
 ## Issues found in mockup
 
@@ -77,6 +77,8 @@ grid-template-columns: repeat(auto-fill, minmax(370px, 1fr));
     margin-bottom: calc(3rem* var(--tw-space-y-reverse));
 }
 ```
+
+- Wild that this project uses (at least?) 3 different kinds of caching. SSG from Next.js, HTTP caching, and in-memory caching. I wonder at what point of adding different caching methods with all their cache validation and cache invalidation strategies, it becomes too much. Surely at some point just serving the data from the server is faster than all the cache validation and cache invalidation strategies. I guess it depends on the use case and what you're trying to achieve.
 
 ## Other improvements I'd like to do
 
