@@ -32,6 +32,20 @@ Posts are fetched from [https://dummyjson.com/docs/posts](https://dummyjson.com/
 
 This project is deployed on Netlify at [https://deluxe-douhua-435825.netlify.app/](https://deluxe-douhua-435825.netlify.app/).
 
+## Caching
+
+### HTTP caching
+
+This project uses HTTP caching to cache the response from the server for 1 hour. The cache-control header is set to:
+
+```
+"public, max-age=3600, stale-while-revalidate=60 stale-if-error=60"
+```
+
+### Client caching
+
+TODO
+
 ## Issues found in mockup
 
 There are several issues in the [Figma mockup](https://www.figma.com/design/yKiOqBqcJVCuG42i6tmrkM/Front-End-Dev-Test?node-id=1133-16284&t=uJGmBShEkUrtbBrm-1). I have followed the mockup as closely as possible, but would like to point out the following:
@@ -54,7 +68,7 @@ There are several issues in the [Figma mockup](https://www.figma.com/design/yKiO
 grid-template-columns: repeat(auto-fill, minmax(370px, 1fr));
 ```
 
-- I really like the space-y utility in Tailwind. Does seem like a lot more code that just using `display:grid;gap:1rem` though.
+- I like the space-y utility in Tailwind. Does seem like a lot more code that just using `display:grid;gap:1rem` though.
 
 ```
 .space-y-12 > :not([hidden]) ~ :not([hidden]) {
@@ -72,9 +86,16 @@ grid-template-columns: repeat(auto-fill, minmax(370px, 1fr));
 ## To do:
 
 - Fix primary button styling
-- Recent posts is not truly infinite scrolling.
 - Implement skeleton loaders
 - https request caching
   - I'm using server components for everyting but the recent posts. When you use Server Components, Next.js automatically caches the output based on the rendered HTML (which includes the fetched data). This means that if the data doesn't change, the server component won't be re-rendered, and the data will be served from the cache.
 - cache data in storage
 - Implement [react query](https://tanstack.com/query/latest/docs/framework/react/overview#enough-talk-show-me-some-code-already) instead of fetching data in useEffect in the RecentPosts component
+- potential issues with stale content from cached data in server components. Need to investigate this further.
+- cache validation (should be easy... )
+- cache invalidation (removing stale content)
+- Not sure this is an issue though as the network request to dummyjson.com shows up in the client as containing an etag. An etag is a validator used to check if the content has changed.
+- use etag from response to check if data has changed
+- there are strong and weak etags. Strong ones have W/ prefixed
+
+dynamic content like posts - cache for an hour should be fine

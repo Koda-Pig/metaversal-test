@@ -11,6 +11,7 @@
  *
  * @returns {Promise<Object>} The fetched data.
  */
+
 export const fetchData = async ({
   dataType,
   userId,
@@ -49,17 +50,20 @@ export const fetchData = async ({
   if (skip !== undefined && skip !== null) {
     url.searchParams.append("skip", skip);
   }
+  if (limit !== undefined && limit !== null) {
+    url.searchParams.append("delay", delay);
+  }
   if (sortBy) {
     url.searchParams.append("sortBy", sortBy);
-  }
-  if (delay) {
-    url.searchParams.append("delay", delay);
   }
 
   try {
     const response = await fetch(url.toString(), {
-      // Cache responses in the browser
       cache: "force-cache",
+      headers: {
+        "Cache-Control":
+          "public, max-age=3600, stale-while-revalidate=60, stale-if-error=60",
+      },
     });
     if (!response.ok) {
       console.error(
