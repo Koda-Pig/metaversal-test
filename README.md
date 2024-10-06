@@ -75,5 +75,6 @@ grid-template-columns: repeat(auto-fill, minmax(370px, 1fr));
 - Recent posts is not truly infinite scrolling.
 - Implement skeleton loaders
 - https request caching
+  - I'm using server components for everyting but the recent posts. When you use Server Components, Next.js automatically caches the output based on the rendered HTML (which includes the fetched data). This means that if the data doesn't change, the server component won't be re-rendered, and the data will be served from the cache.
 - cache data in storage
--
+- Implement [react query](https://tanstack.com/query/latest/docs/framework/react/overview#enough-talk-show-me-some-code-already) instead of fetching data in useEffect in the RecentPosts component

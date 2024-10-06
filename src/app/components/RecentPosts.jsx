@@ -85,8 +85,8 @@ const RecentPosts = () => {
 
   return (
     <div className="space-y-4">
-      {posts?.map(({ post, user }) => (
-        <Post key={post.id} post={post} user={user} />
+      {posts?.map(({ post, user }, index) => (
+        <Post key={`${post.id}-${index}`} post={post} user={user} />
       ))}
       <span id="bottom-of-page" ref={bottomRef} />
       {hasMorePosts && !showError && <Spinner />}

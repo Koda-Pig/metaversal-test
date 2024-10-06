@@ -14,10 +14,10 @@
 export const fetchData = async ({
   dataType,
   userId,
-  limit,
-  skip,
+  limit = 0,
+  skip = 0,
   sortBy,
-  delay,
+  delay = 0,
 }) => {
   const baseUrl = "https://dummyjson.com/";
 
@@ -35,10 +35,11 @@ export const fetchData = async ({
       path = "users";
     }
   } else {
-    throw new Error(`Unsupported dataType: ${dataType}`);
+    throw new Error(
+      `Unsupported dataType: ${dataType}. Must be either 'posts' or 'users'. Got: ${dataType}`
+    );
   }
 
-  // Create a URL object
   const url = new URL(path, baseUrl);
 
   // Append query parameters
@@ -56,15 +57,24 @@ export const fetchData = async ({
   }
 
   try {
-    const response = await fetch(url.toString());
+    const response = await fetch(url.toString(), {
+      // Cache responses in the browser
+      cache: "force-cache",
+    });
     if (!response.ok) {
-      console.error(`HTTP error! Status: ${response.status}`);
+      console.error(
+        `HTTP error! Status: ${response.status}. Path ${url.pathname}`
+      );
       return null;
     }
+
+    // Empty response
+    if (response.status === 204) return null;
+
     const fetchedData = await response.json();
     return fetchedData;
   } catch (error) {
-    console.error("Unable to fetch data:", error);
+    console.error("Unable to fetch data:", error.message);
     throw error;
   }
 };
