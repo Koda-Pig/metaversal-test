@@ -34,3 +34,43 @@ body {
     #000 0
   );
 }
+
+.button-primary {
+  position: relative;
+  overflow: hidden;
+  span {
+    position: relative;
+    z-index: 1;
+  }
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+  &::before {
+    background: linear-gradient(
+      180deg,
+      #ff0073 -85.89%,
+      #811ab8 34.45%,
+      #4426d9 100%
+    );
+  }
+  &::after {
+    transition: inherit;
+    transition-property: opacity;
+    background-image: linear-gradient(
+      180deg,
+      #ff0073 -114.9%,
+      #811ab8 -51.51%,
+      #4426d9 100%
+    );
+  }
+  &:hover,
+  &:focus-visible {
+    &::after {
+      opacity: 0;
+    }
+  }
+}

@@ -1,9 +1,9 @@
-import "./globals.css";
+import "./globals.scss";
 
 export const metadata = {
   title: "Metaversal test",
   description:
-    "Test project that dispalys user posts feed and user profiles using dummy data."
+    "Test project that dispalys user posts feed and user profiles using dummy data.",
 };
 
 export default function RootLayout({ children }) {

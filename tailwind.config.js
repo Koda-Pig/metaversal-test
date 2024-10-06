@@ -34,6 +34,9 @@ module.exports = {
       borderRadius: {
         "2xl-inherit": "calc(1rem - 1px)",
       },
+      backgroundSize: {
+        "[200%]": "200%",
+      },
     },
   },
   plugins: [],

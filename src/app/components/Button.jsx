@@ -18,21 +18,19 @@ const Button = ({ action = null, label, classes = "", type = "primary" }) => {
   // or this:
   // https://www.reddit.com/r/tailwindcss/comments/17uy96o/background_gradient_transitions_using_tailwind/
 
+  // bg-gradient-to-b
+  // from-pink
+  // from-[-114.9%]
+  // via-blue
+  // via-[-51.51%]
+  // to-purple
+  // to-100%
   if (type === "primary") {
     classNames.push(
       `
 			font-bold
 			text-white
-			bg-gradient-to-b
-			from-pink
-			from-[-114.9%]
-			via-blue
-			via-[-51.51%]
-			to-purple
-			to-100%
-			hover:from-[-85.89%]
-			hover:via-34.45%
-			hover:to-100%
+      button-primary
 			`
     );
   }
@@ -65,7 +63,7 @@ const Button = ({ action = null, label, classes = "", type = "primary" }) => {
 			`}
       type="button"
     >
-      {label}
+      <span>{label}</span>
     </button>
   );
 };

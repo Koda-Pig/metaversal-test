@@ -12,7 +12,8 @@
     "lru-cache": "^10.4.3",
     "next": "14.2.14",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "sass": "^1.79.4"
   },
   "devDependencies": {
     "eslint": "^8",

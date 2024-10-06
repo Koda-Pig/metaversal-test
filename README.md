@@ -87,17 +87,6 @@ grid-template-columns: repeat(auto-fill, minmax(370px, 1fr));
 
 ## To do:
 
-- Fix primary button styling
 - Implement skeleton loaders
-- https request caching
-  - I'm using server components for everyting but the recent posts. When you use Server Components, Next.js automatically caches the output based on the rendered HTML (which includes the fetched data). This means that if the data doesn't change, the server component won't be re-rendered, and the data will be served from the cache.
-- cache data in storage
 - Implement [react query](https://tanstack.com/query/latest/docs/framework/react/overview#enough-talk-show-me-some-code-already) instead of fetching data in useEffect in the RecentPosts component
-- potential issues with stale content from cached data in server components. Need to investigate this further.
-- cache validation (should be easy... )
-- cache invalidation (removing stale content)
-- Not sure this is an issue though as the network request to dummyjson.com shows up in the client as containing an etag. An etag is a validator used to check if the content has changed.
-- use etag from response to check if data has changed
-- there are strong and weak etags. Strong ones have W/ prefixed
-
-dynamic content like posts - cache for an hour should be fine
+- refactor RecentPosts - more useEffect than necessary.
