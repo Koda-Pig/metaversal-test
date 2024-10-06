@@ -7,50 +7,55 @@ import ErrorMessage from "@/app/components/ErrorMessage";
 import { limitItems, addUsersToPosts } from "@/app/lib";
 import { fetchData } from "@/app/api/fetchdata";
 
+const BATCH_SIZE = 5;
+
 const RecentPosts = () => {
   const bottomRef = useRef(null);
   const [posts, setPosts] = useState([]);
-  const [displayedPosts, setDisplayedPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [showError, setShowError] = useState(false);
   const [hasMorePosts, setHasMorePosts] = useState(true);
+  const [isFetchingMore, setIsFetchingMore] = useState(false);
+  const [skip, setSkip] = useState(0);
+
+  const fetchPosts = async (skipCount) => {
+    try {
+      const postData = await fetchData({
+        dataType: "posts",
+        skip: skipCount,
+        limit: BATCH_SIZE,
+        delay: 2000,
+      });
+
+      const fetchedPosts = postData?.posts ?? [];
+
+      if (fetchedPosts.length === 0) {
+        setHasMorePosts(false);
+        return;
+      }
+
+      const postsWithUsers = await addUsersToPosts(fetchedPosts);
+
+      setPosts((prevPosts) => [...prevPosts, ...postsWithUsers]);
+      setSkip((prevSkip) => prevSkip + BATCH_SIZE);
+    } catch (error) {
+      setShowError(true);
+      console.error("Error fetching posts", error);
+    } finally {
+      setLoading(false);
+      setIsFetchingMore(false);
+    }
+  };
 
   useEffect(() => {
-    const fetchInitialPosts = async () => {
-      try {
-        const postData = await fetchData({
-          dataType: "posts",
-          delay: 2000,
-        });
-        const initialPosts = postData?.posts ?? [];
-        const postsWithUsers = await addUsersToPosts(initialPosts);
-        setPosts(postsWithUsers);
-        setDisplayedPosts(limitItems(postsWithUsers, 5));
-      } catch (error) {
-        setShowError(true);
-        console.error("Error fetching posts", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchInitialPosts();
+    fetchPosts(skip);
   }, []);
 
   const addMorePosts = () => {
-    if (!hasMorePosts || showError) return;
+    if (isFetchingMore || !hasMorePosts || showError) return;
 
-    const nextPosts = posts.slice(
-      displayedPosts.length,
-      displayedPosts.length + 5
-    );
-
-    if (nextPosts.length === 0) {
-      setHasMorePosts(false);
-      return;
-    }
-
-    setDisplayedPosts((prev) => [...prev, ...nextPosts]);
+    setIsFetchingMore(true);
+    fetchPosts(skip);
   };
 
   useEffect(() => {
@@ -72,15 +77,15 @@ const RecentPosts = () => {
         observer.unobserve(bottomRef.current);
       }
     };
-  }, [displayedPosts, posts, showError, hasMorePosts]);
+  }, [posts, showError, hasMorePosts]);
 
-  if (loading) return <Spinner />;
+  if (loading && posts.length === 0) return <Spinner />;
 
   if (showError) return <ErrorMessage errorTitle="Error loading posts" />;
 
   return (
     <div className="space-y-4">
-      {displayedPosts?.map(({ post, user }) => (
+      {posts?.map(({ post, user }) => (
         <Post key={post.id} post={post} user={user} />
       ))}
       <span id="bottom-of-page" ref={bottomRef} />
