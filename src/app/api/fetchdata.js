@@ -47,7 +47,8 @@ export const fetchData = async ({ dataType, userId, limit, skip, sortBy }) => {
   try {
     const response = await fetch(url.toString());
     if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
+      console.error(`HTTP error! Status: ${response.status}`);
+      return null;
     }
     const fetchedData = await response.json();
     return fetchedData;

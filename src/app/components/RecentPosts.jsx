@@ -4,13 +4,25 @@ import { useState, useEffect, useRef } from "react";
 import Post from "@/app/components/Post";
 import Section from "@/app/components/Section";
 import Spinner from "@/app/components/Spinner";
+import ErrorMessage from "@/app/components/ErrorMessage";
 import { limitItems } from "../lib";
 
 const ARTIFICIAL_DELAY = 1000;
 
 const RecentPosts = ({ posts }) => {
   const bottomRef = useRef(null);
-  const [displayedPosts, setDisplayedPosts] = useState(limitItems(posts, 5));
+  const [displayedPosts, setDisplayedPosts] = useState(
+    posts?.length ? limitItems(posts, 5) : []
+  );
+
+  if (!posts?.length) {
+    return (
+      <Section title="Recent">
+        <ErrorMessage errorTitle="Error loading posts" />
+      </Section>
+    );
+  }
+
   const morePostsToShow = displayedPosts.length < posts.length;
 
   const addMorePosts = () => {
@@ -46,7 +58,7 @@ const RecentPosts = ({ posts }) => {
   }, [posts]);
 
   return (
-    <Section title="Recent posts">
+    <Section title="Recent">
       <div className="space-y-4">
         {displayedPosts?.map(({ post, user }) => (
           <Post key={post.id} post={post} user={user} />

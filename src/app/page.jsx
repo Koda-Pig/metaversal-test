@@ -13,7 +13,6 @@ const Page = async () => {
     dataType: "posts",
   });
   const posts = postsData.posts;
-
   const userData = await fetchData({
     dataType: "users",
   });
@@ -70,9 +69,11 @@ const Page = async () => {
       <Header title="Feed" />
 
       <Main>
-        <SuggestedPosts posts={postsWithUsers} />
-        <WhoToFollow users={usersWithPosts} />
-        <Suspense fallback={<Spinner />}>
+        <Suspense
+          fallback={<Spinner showLoadingText={true} classNames="py-12" />}
+        >
+          <SuggestedPosts posts={postsWithUsers} />
+          <WhoToFollow users={usersWithPosts} />
           <RecentPosts posts={postsWithUsers} />
         </Suspense>
       </Main>

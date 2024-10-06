@@ -24,12 +24,7 @@ body {
 }
 
 .spinner {
-  --size: 20px;
-  --border-width: calc(var(--size) * 0.15);
-  width: var(--size);
-  aspect-ratio: 1;
-  display: block;
-  border-radius: 50%;
+  --border-width: 3px;
   background: radial-gradient(farthest-side, black 94%, #0000)
       top/var(--border-width) var(--border-width) no-repeat,
     conic-gradient(#0000 30%, black);
@@ -38,11 +33,4 @@ body {
     #0000 calc(100% - var(--border-width)),
     #000 0
   );
-  animation: l13 1s infinite linear;
-}
-
-@keyframes l13 {
-  100% {
-    transform: rotate(1turn);
-  }
 }

@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import Card from "@/app/components/Card";
@@ -28,15 +30,13 @@ const Post = ({ post, user }) => {
 
           <p className="mt-4 mb-3 text-secondary">{body}</p>
 
-          {tags?.length > 0 && (
-            <div className="flex gap-3 text-xs">
-              {tags.map((tag, index) => (
-                <span key={`${tag}-${index}`} className="text-blue">
-                  #{tag}
-                </span>
-              ))}
-            </div>
-          )}
+          <div className="flex gap-3 text-xs">
+            {tags?.map((tag, index) => (
+              <span key={`${tag}-${index}`} className="text-blue">
+                #{tag}
+              </span>
+            ))}
+          </div>
         </div>
       </div>
 

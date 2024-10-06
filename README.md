@@ -44,6 +44,7 @@ There are several issues in the [Figma mockup](https://www.figma.com/design/yKiO
 
 03/10/2024 +- 3 hours
 04/10/2024 +- 5 hours
+05/10/2024 +- 4 hours
 
 ## Comments and whining
 
@@ -65,5 +66,5 @@ grid-template-columns: repeat(auto-fill, minmax(370px, 1fr));
 
 ## Other improvements I'd like to do
 
-- Add a read more to text-ellipses the post content;
+- Add a read more to text-ellipses the post content; use line-clamp-3 class
 - Add toggle for dark mode
