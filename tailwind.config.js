@@ -25,7 +25,7 @@ module.exports = {
         "off-white": "#FFFAF5",
       },
       gridTemplateColumns: {
-        "auto-fill-100": "repeat(auto-fill, minmax(326px, 1fr))",
+        "auto-fill-100": "repeat(auto-fill, minmax(300px, 1fr))",
         "reserve-space": "120px auto",
       },
       boxShadow: {
