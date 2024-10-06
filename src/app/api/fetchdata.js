@@ -7,10 +7,18 @@
  * @param {number} [params.limit] - The limit of items to fetch (optional).
  * @param {number} [params.skip] - The number of items to skip (optional).
  * @param {string} [params.sortBy] - The field to sort the data by (optional).
+ * @param {number} [params.delay] - The delay in milliseconds between 0 and 5000 (optional).
  *
  * @returns {Promise<Object>} The fetched data.
  */
-export const fetchData = async ({ dataType, userId, limit, skip, sortBy }) => {
+export const fetchData = async ({
+  dataType,
+  userId,
+  limit,
+  skip,
+  sortBy,
+  delay,
+}) => {
   const baseUrl = "https://dummyjson.com/";
 
   let path = "";
@@ -42,6 +50,9 @@ export const fetchData = async ({ dataType, userId, limit, skip, sortBy }) => {
   }
   if (sortBy) {
     url.searchParams.append("sortBy", sortBy);
+  }
+  if (delay) {
+    url.searchParams.append("delay", delay);
   }
 
   try {

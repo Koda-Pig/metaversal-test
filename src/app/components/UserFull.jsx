@@ -1,15 +1,29 @@
 import Image from "next/image";
 import Button from "@/app/components/Button";
 import Card from "@/app/components/Card";
+import { fetchData } from "@/app/api/fetchdata";
+import { calculateTotalLikes } from "@/app/lib";
 
-const calculateTotalLikes = (posts) => {
-  return posts.reduce((acc, post) => {
-    return acc + post.reactions.likes;
-  }, 0);
-};
+const UserFull = async ({ userId }) => {
+  const user = await fetchData({
+    userId: userId,
+    dataType: "users",
+    delay: 2000,
+  });
 
-const UserFull = ({ user }) => {
-  const { firstName, lastName, username, address, company, posts } = user;
+  if (!user) {
+    console.warn(`No user found for id ${id}`);
+    return <ErrorMessage errorTitle="User not found" />;
+  }
+
+  const stats = await fetchData({
+    userId: userId,
+    dataType: "posts",
+  });
+
+  const profile = { ...user, ...stats };
+
+  const { firstName, lastName, username, address, company, posts } = profile;
   const { department } = company;
   const totalLikes = calculateTotalLikes(posts);
 

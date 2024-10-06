@@ -68,3 +68,12 @@ grid-template-columns: repeat(auto-fill, minmax(370px, 1fr));
 
 - Add a read more to text-ellipses the post content; use line-clamp-3 class
 - Add toggle for dark mode
+
+## To do:
+
+- Fix primary button styling
+- Recent posts is not truly infinite scrolling.
+- Implement skeleton loaders
+- https request caching
+- cache data in storage
+-

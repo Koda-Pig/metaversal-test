@@ -3,6 +3,7 @@ import { fetchData } from "@/app/api/fetchdata";
 import Button from "@/app/components/Button";
 import SuggestedPosts from "@/app/components/SuggestedPosts";
 import Header from "@/app/components/Header";
+import Section from "@/app/components/Section";
 import WhoToFollow from "@/app/components/WhoToFollow";
 import RecentPosts from "@/app/components/RecentPosts";
 import Spinner from "@/app/components/Spinner";
@@ -49,33 +50,28 @@ const Page = async () => {
     })
   );
 
-  const usersWithPosts = await Promise.all(
-    users.map(async (user) => {
-      try {
-        const posts = await fetchData({
-          userId: user.id,
-          dataType: "posts",
-        });
-        return { ...user, posts };
-      } catch {
-        console.warn(`No posts found for user ${user.id}`);
-        return { ...user, posts: [] };
-      }
-    })
-  );
-
   return (
     <>
       <Header title="Feed" />
 
       <Main>
-        <Suspense
-          fallback={<Spinner showLoadingText={true} classNames="py-12" />}
-        >
-          <SuggestedPosts posts={postsWithUsers} />
-          <WhoToFollow users={usersWithPosts} />
-          <RecentPosts posts={postsWithUsers} />
-        </Suspense>
+        <Section title="Suggested posts">
+          <Suspense
+            fallback={<Spinner showLoadingText={true} classNames="py-12" />}
+          >
+            <SuggestedPosts />
+          </Suspense>
+        </Section>
+
+        <Section title="Who to follow">
+          <Suspense
+            fallback={<Spinner showLoadingText={true} classNames="py-12" />}
+          >
+            <WhoToFollow />
+          </Suspense>
+        </Section>
+
+        <RecentPosts posts={postsWithUsers} />
       </Main>
     </>
   );

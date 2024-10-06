@@ -1,32 +1,29 @@
-import { limitItems } from "../lib";
+import { fetchData } from "@/app/api/fetchdata";
+import { limitItems, addUsersToPosts, sortPostsByLikeCount } from "@/app/lib";
 import Post from "@/app/components/Post";
-import Section from "@/app/components/Section";
 import ErrorMessage from "@/app/components/ErrorMessage";
 
-const sortPostsByLikeCount = (posts) => {
-  return posts.sort((a, b) => b.post.reactions.likes - a.post.reactions.likes);
-};
+const SuggestedPosts = async () => {
+  const postData = await fetchData({
+    dataType: "posts",
+    delay: 2000,
+  });
+  const posts = postData?.posts;
+  const postsWithUsers = await addUsersToPosts(posts);
 
-const SuggestedPosts = async ({ posts }) => {
-  if (!posts?.length) {
-    return (
-      <Section title="Suggested posts">
-        <ErrorMessage errorTitle="Error loading posts" />
-      </Section>
-    );
+  if (!postsWithUsers?.length) {
+    return <ErrorMessage errorTitle="Error loading posts" />;
   }
 
-  const sortedPosts = sortPostsByLikeCount(posts);
+  const sortedPosts = sortPostsByLikeCount(postsWithUsers);
   const limitedPosts = limitItems(sortedPosts, 2);
 
   return (
-    <Section title="Suggested posts">
-      <div className="space-y-4">
-        {limitedPosts?.map(({ post, user }) => {
-          return <Post key={post.id} post={post} user={user} />;
-        })}
-      </div>
-    </Section>
+    <div className="space-y-4">
+      {limitedPosts?.map(({ post, user }) => {
+        return <Post key={post.id} post={post} user={user} />;
+      })}
+    </div>
   );
 };
 

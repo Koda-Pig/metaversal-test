@@ -1,32 +1,29 @@
-import { limitItems } from "@/app/lib";
+import { fetchData } from "@/app/api/fetchdata";
+import { limitItems, sortUsersByPostCount, addPostsToUsers } from "@/app/lib";
 import UserSummary from "@/app/components/UserSummary";
-import Section from "@/app/components/Section";
 import ErrorMessage from "@/app/components/ErrorMessage";
 
-const sortUsersByPostCount = (users) => {
-  return users.sort((a, b) => b.posts.total - a.posts.total);
-};
+const WhoToFollow = async () => {
+  const userData = await fetchData({
+    dataType: "users",
+    delay: 2000,
+  });
+  const users = userData?.users;
+  const usersWithPosts = await addPostsToUsers(users);
 
-const WhoToFollow = ({ users }) => {
-  if (!users?.length) {
-    return (
-      <Section title="Who to follow">
-        <ErrorMessage errorTitle="Error loading users" />
-      </Section>
-    );
+  if (!usersWithPosts?.length) {
+    return <ErrorMessage errorTitle="Error loading users" />;
   }
 
-  const sortedUsers = sortUsersByPostCount(users);
+  const sortedUsers = sortUsersByPostCount(usersWithPosts);
   const limitedUsers = limitItems(sortedUsers, 4);
 
   return (
-    <Section title="Who to follow">
-      <div className="grid sm:grid-cols-auto-fill-100 gap-4">
-        {limitedUsers?.map((user) => (
-          <UserSummary key={user.id} user={user} />
-        ))}
-      </div>
-    </Section>
+    <div className="grid sm:grid-cols-auto-fill-100 gap-4">
+      {limitedUsers?.map((user) => (
+        <UserSummary key={user.id} user={user} />
+      ))}
+    </div>
   );
 };
 
