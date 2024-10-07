@@ -19,7 +19,7 @@ const SuggestedPosts = async () => {
   const limitedPosts = limitItems(sortedPosts, 2);
 
   return (
-    <div className="space-y-4">
+    <div className="grid gap-4">
       {limitedPosts?.map(({ post, user }) => {
         return <Post key={post.id} post={post} user={user} />;
       })}

@@ -78,12 +78,17 @@ const RecentPosts = () => {
     };
   }, [posts, showError, hasMorePosts]);
 
-  if (loading && posts.length === 0) return <SkeletonPost />;
+  if (loading && posts.length === 0)
+    return (
+      <div className="grid gap-4">
+        <SkeletonPost repeats={5} />
+      </div>
+    );
 
   if (showError) return <ErrorMessage errorTitle="Error loading posts" />;
 
   return (
-    <div className="space-y-4">
+    <div className="grid gap-4">
       {posts?.map(({ post, user }, index) => (
         <Post key={`${post.id}-${index}`} post={post} user={user} />
       ))}

@@ -17,7 +17,7 @@ const Page = async () => {
         <Section title="Suggested posts">
           <Suspense
             fallback={
-              <div className="space-y-4">
+              <div className="grid gap-4">
                 <SkeletonPost repeats={2} />
               </div>
             }
