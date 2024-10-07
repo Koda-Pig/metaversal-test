@@ -8,7 +8,7 @@ const Button = ({ action = null, label, classes = "", type = "primary" }) => {
   }
   if (type === "secondary") {
     classNames.push(
-      "font-medium text-blue border border-blue hover:grey-cold-20-50 focus-visible:grey-cold-20-50"
+      "font-medium text-blue transition-color border border-blue hover:border-blue-focus hover:bg-primary-50 hover:text-blue-focus focus-visible:bg-primary-50 focus-visible:border-blue-focus focus-visible:text-blue-focus"
     );
   }
 
@@ -19,13 +19,8 @@ const Button = ({ action = null, label, classes = "", type = "primary" }) => {
         if (action === "reload") window.location.reload();
       }}
       className={`
-				${classNames.join(" ")}
-        px-3.5 py-2
-        h-min
-        min-h-[35px] transition-colors
-				grid place-items-center
-        rounded-full leading-4
-			`}
+        ${classNames.join(" ")}
+        px-3.5 py-2 h-min min-h-[35px] transition-colors grid place-items-center rounded-full leading-4`}
       type="button"
     >
       <span>{label}</span>

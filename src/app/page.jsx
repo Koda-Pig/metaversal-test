@@ -14,29 +14,30 @@ const Page = async () => {
       <Header title="Feed" />
 
       <Main>
-        <Section title="Suggested posts">
-          <Suspense
-            fallback={
-              <div className="grid gap-4">
-                <SkeletonPost repeats={2} />
-              </div>
-            }
-          >
+        <Suspense
+          fallback={
+            <>
+              <Section title="Suggested posts">
+                <div className="grid gap-4">
+                  <SkeletonPost repeats={2} />
+                </div>
+              </Section>
+              <Section title="Who to follow">
+                <div className="grid sm:grid-cols-auto-fill-100 gap-4">
+                  <SkeletonUserSummary repeats={4} />
+                </div>
+              </Section>
+            </>
+          }
+        >
+          <Section title="Suggested posts">
             <SuggestedPosts />
-          </Suspense>
-        </Section>
+          </Section>
 
-        <Section title="Who to follow">
-          <Suspense
-            fallback={
-              <div className="grid sm:grid-cols-auto-fill-100 gap-4">
-                <SkeletonUserSummary repeats={4} />
-              </div>
-            }
-          >
+          <Section title="Who to follow">
             <WhoToFollow />
-          </Suspense>
-        </Section>
+          </Section>
+        </Suspense>
 
         <Section title="Recent">
           <RecentPosts />

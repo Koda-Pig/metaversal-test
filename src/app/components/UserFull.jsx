@@ -46,7 +46,7 @@ const UserFull = async ({ userId }) => {
         </h1>
 
         <div className="lg:flex lg:align-center lg:gap-3 lg:mb-3">
-          <p className="leading-[19px] text-secondary mb-3 lg:m-0">
+          <p className="flex items-center leading-[19px] text-secondary mb-3 lg:m-0">
             @{username}
           </p>
 
@@ -84,7 +84,7 @@ const UserFull = async ({ userId }) => {
         </div>
       </div>
 
-      <div className="p-4 flex gap-6 border-t border-grey-cold-50 justify-center bg-gradient-to-b from-white to-off-white to-100% rounded-2xl-inherit rounded-t-none lg:justify-start lg:px-6">
+      <div className="p-4 flex gap-4 border-t border-grey-cold-50 justify-center bg-gradient-to-b from-white to-off-white to-100% rounded-2xl-inherit rounded-t-none lg:justify-start lg:px-6">
         <Button label="Follow" type="primary" />
         <Button label="Message" type="secondary" />
       </div>
