@@ -56,6 +56,9 @@ Chose in-memory caching using `lru-cache` to cache data in storage as it fits th
 04/10/2024 +- 5 hours
 05/10/2024 +- 4 hours
 06/10/2024 +- 5 hours
+07/10/2024 +- 4 hours
+
+Total: 21 hours
 
 ## General notes:
 

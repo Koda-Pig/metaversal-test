@@ -34,7 +34,7 @@ body {
   );
 }
 
-.animate-custom {
+.animate-shimmer {
   animation: shimmer 3s;
   animation-iteration-count: infinite;
   background-image: linear-gradient(-60deg, #ebedee 30%, #f9fafa, #ebedee 70%);

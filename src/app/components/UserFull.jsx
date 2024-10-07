@@ -69,13 +69,17 @@ const UserFull = async ({ userId }) => {
 
         <div className="flex justify-center lg:justify-start gap-3">
           <div>
-            <h2 className="text-start text-2xl">{posts.length}</h2>
+            <h2 className="text-start text-2xl">
+              {posts.length.toLocaleString()}
+            </h2>
             <span className="text-secondary text-xs">
               POST{posts.length !== 1 ? "S" : ""}
             </span>
           </div>
           <div>
-            <h2 className=" text-start text-2xl">{totalLikes}</h2>
+            <h2 className=" text-start text-2xl">
+              {totalLikes.toLocaleString()}
+            </h2>
             <span className="text-secondary text-xs">
               LIKE{totalLikes !== 1 ? "S" : ""}
             </span>

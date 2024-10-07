@@ -11,7 +11,7 @@ const SkeletonCell = ({
         ${width}
         ${margin}
         ${classes}
-        animate-custom
+        animate-shimmer
         rounded-full
       `}
     />

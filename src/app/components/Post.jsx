@@ -42,7 +42,7 @@ const Post = ({ post, user }) => {
       <div className="p-4 flex gap-6 text-secondary border-t border-content-border">
         <span className="flex gap-1">
           <Image src="/icons/like.svg" alt="like icon" width={16} height={16} />
-          {reactions?.likes}
+          {reactions.likes.toLocaleString()}
         </span>
         <span className="flex gap-1">
           <Image
@@ -51,7 +51,7 @@ const Post = ({ post, user }) => {
             width={16}
             height={16}
           />
-          {reactions?.dislikes}
+          {reactions.dislikes.toLocaleString()}
         </span>
         <span className="flex gap-1">
           <Image
@@ -60,7 +60,7 @@ const Post = ({ post, user }) => {
             width={16}
             height={16}
           />
-          {views}
+          {views.toLocaleString()}
         </span>
       </div>
     </Card>
