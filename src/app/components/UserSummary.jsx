@@ -4,22 +4,25 @@ import Button from "@/app/components/Button";
 import Card from "@/app/components/Card";
 
 const UserSummary = ({ user }) => {
+  const url = `/profile/${user.id}`;
+
   return (
     <Card>
       <div className="p-4 flex gap-3 items-center">
-        <Link href={`/profile/${user.id}`} className="min-w-[40px]">
+        <Link href={url} className="min-w-[40px]">
           <Image
+            className="transition-opacity hover:opacity-50"
             src="/images/avatar.png"
             alt="placeholder avatar"
             width={40}
             height={40}
           />
         </Link>
-        <Link href={`/profile/${user.id}`}>
-          <h4 className="mb-1 leading-4">
+        <Link href={url}>
+          <h4 className="mb-[3px] leading-4 border-b-[1px] transition-colors border-transparent hover:border-primary">
             {user.firstName} {user.lastName}
           </h4>
-          <p className="text-secondary text-xs mb-1 ">@{user.username}</p>
+          <p className="text-secondary text-xs">@{user.username}</p>
         </Link>
         <Button label="Follow" classes="ml-auto" type="secondary" />
       </div>

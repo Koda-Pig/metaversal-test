@@ -48,7 +48,7 @@ Chose in-memory caching using `lru-cache` to cache data in storage as it fits th
 
 ## Issues found in mockup
 
-There are several issues in the [Figma mockup](https://www.figma.com/design/yKiOqBqcJVCuG42i6tmrkM/Front-End-Dev-Test?node-id=1133-16284&t=uJGmBShEkUrtbBrm-1). I have followed the mockup as closely as possible, but would like to point out the following:
+There are some issues in the [Figma mockup](https://www.figma.com/design/yKiOqBqcJVCuG42i6tmrkM/Front-End-Dev-Test?node-id=1133-16284&t=uJGmBShEkUrtbBrm-1). I have followed the mockup as closely as possible, but would like to point out the following:
 
 1. Incorrect sequential order of headings. h3 is used first, followed by an h2. This is not semantically correct.
 2. Suggested posts title text color is black. It shoud be either text primary or text secondary color as is used in the rest of the design.
@@ -60,28 +60,6 @@ There are several issues in the [Figma mockup](https://www.figma.com/design/yKiO
 04/10/2024 +- 5 hours
 05/10/2024 +- 4 hours
 06/10/2024 +- 5 hours
-
-## Comments and whining
-
-- Why can't you use `auto-fill` for `grid-template-columns` in Tailwind? Waaaaaah!
-
-```
-grid-template-columns: repeat(auto-fill, minmax(370px, 1fr));
-```
-
-- I like the space-y utility in Tailwind. Does seem like a lot more code that just using `display:grid;gap:1rem` though.
-
-```
-.space-y-12 > :not([hidden]) ~ :not([hidden]) {
-    --tw-space-y-reverse: 0;
-    margin-top: calc(3rem* calc(1 - var(--tw-space-y-reverse)));
-    margin-bottom: calc(3rem* var(--tw-space-y-reverse));
-}
-```
-
-Nevermind I changed my mind about this. It's inconsistent. React or nextjs adds a <template> tag to the DOM and it messes up the spacing. I'm going back to using `grid gap-12`.
-
-- Wild that this project uses (at least?) 3 different kinds of caching. SSG from Next.js, HTTP caching, and in-memory caching. I wonder at what point of adding different caching methods with all their cache validation and cache invalidation strategies, it becomes too much. Surely at some point just serving the data from the server is faster than all the cache validation and cache invalidation strategies. I guess it depends on the use case and what you're trying to achieve.
 
 ## Other improvements I'd like to do
 
