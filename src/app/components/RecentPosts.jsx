@@ -16,7 +16,6 @@ const RecentPosts = ({ userId = undefined }) => {
   const [loading, setLoading] = useState(true);
   const [showError, setShowError] = useState(false);
   const [hasMorePosts, setHasMorePosts] = useState(true);
-  const [isFetchingMore, setIsFetchingMore] = useState(false);
   const [skip, setSkip] = useState(0);
 
   const fetchPosts = async (skipCount) => {
@@ -45,7 +44,6 @@ const RecentPosts = ({ userId = undefined }) => {
       console.error("Error fetching posts", error);
     } finally {
       setLoading(false);
-      setIsFetchingMore(false);
     }
   };
 
@@ -54,9 +52,8 @@ const RecentPosts = ({ userId = undefined }) => {
   }, []);
 
   const addMorePosts = () => {
-    if (isFetchingMore || !hasMorePosts || showError) return;
+    if (!hasMorePosts || showError) return;
 
-    setIsFetchingMore(true);
     fetchPosts(skip);
   };
 

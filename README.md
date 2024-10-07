@@ -62,6 +62,7 @@ Total: 21 hours
 
 ## General notes:
 
+- I've implemented an artificial delay of 2 seconds in the network requests to dummyjson, so that the loading states are more noticeable.
 - Regarding loading, this requirement:
   ```
   If sections finish loading at different times, generally we want to avoid sections from shifting as they load in. Consider showing the skeletons until all sections finish loading.
@@ -73,4 +74,3 @@ Total: 21 hours
 - Add a read more to text-ellipses the post content; use line-clamp-3 class. There is actually styles for this in the components section.
 - Add toggle for dark mode
   Implement [react query](https://tanstack.com/query/latest/docs/framework/react/overview#enough-talk-show-me-some-code-already) instead of fetching data in useEffect in the RecentPosts component
-- refactor RecentPosts - more useEffect than necessary.
