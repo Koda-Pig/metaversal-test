@@ -17,7 +17,7 @@ const Page = async ({ params }) => {
           <UserFull userId={id} />
         </Suspense>
         <Section title="Recent">
-          <RecentPosts />
+          <RecentPosts userId={id} />
         </Section>
       </Main>
     </>

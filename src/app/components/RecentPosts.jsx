@@ -10,7 +10,7 @@ import SkeletonPost from "@/app/components/SkeletonPost";
 
 const BATCH_SIZE = 5;
 
-const RecentPosts = () => {
+const RecentPosts = ({ userId = undefined }) => {
   const bottomRef = useRef(null);
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -22,6 +22,7 @@ const RecentPosts = () => {
   const fetchPosts = async (skipCount) => {
     try {
       const postData = await fetchData({
+        userId: userId !== undefined ? userId : undefined,
         dataType: "posts",
         skip: skipCount,
         limit: BATCH_SIZE,
