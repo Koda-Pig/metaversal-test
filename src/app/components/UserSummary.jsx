@@ -11,7 +11,7 @@ const UserSummary = ({ user }) => {
       <div className="p-4 flex gap-3 items-center">
         <Link href={url} className="min-w-[40px]">
           <Image
-            className="transition-opacity hover:opacity-50"
+            className="transition-opacity hover:opacity-50 focus-visible:opacity-50"
             src="/images/avatar.png"
             alt="placeholder avatar"
             width={40}
@@ -19,7 +19,7 @@ const UserSummary = ({ user }) => {
           />
         </Link>
         <Link href={url}>
-          <h4 className="mb-[3px] leading-4 border-b-[1px] transition-colors border-transparent hover:border-primary">
+          <h4 className="mb-[3px] leading-4 border-b-[1px] transition-colors border-transparent hover:border-primary focus-visible:border-primary">
             {user.firstName} {user.lastName}
           </h4>
           <p className="text-secondary text-xs">@{user.username}</p>

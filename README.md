@@ -68,7 +68,11 @@ There are some issues in the [Figma mockup](https://www.figma.com/design/yKiOqBq
 
 ## To do:
 
-- Implement skeleton loaders - handle loading all before returning actual data
+- Regarding loading, this requirement:
+  ```
+  If sections finish loading at different times, generally we want to avoid sections from shifting as they load in. Consider showing the skeletons until all sections finish loading.
+  ```
+  I've done this to an extent. SuggestedPosts, WhoToFollow, and UserProfile are all server components wrapped in `<Suspense>` boundaries so I await all of them to finish loading before I replace their skeleton counterparts. RecentPosts component on the other hand is a client side component that fetches data on mount. Wrapping it in a `<Suspense>` boundary won't do anything. It needs to be a client side component in order to detect when the user has scrolled to the bottom of the page to fetch more posts. It handles it's own loading states and returns skeleton versions of posts while it is loading.
 - Implement [react query](https://tanstack.com/query/latest/docs/framework/react/overview#enough-talk-show-me-some-code-already) instead of fetching data in useEffect in the RecentPosts component
 - refactor RecentPosts - more useEffect than necessary.
-- Check comopnents in figma to finalise designs
+- Check components in figma to finalise designs

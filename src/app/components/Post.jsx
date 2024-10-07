@@ -12,7 +12,7 @@ const Post = ({ post, user }) => {
       <div className="p-4 flex gap-3">
         <Link href={url} className="min-w-[40px]">
           <Image
-            className="transition-opacity hover:opacity-50"
+            className="transition-opacity hover:opacity-50 focus-visible:opacity-50"
             src="/images/avatar.png"
             alt="placeholder avatar"
             width={40}
@@ -21,7 +21,7 @@ const Post = ({ post, user }) => {
         </Link>
         <div>
           <Link href={url}>
-            <h4 className="leading-4 mb-[3px] max-w-max border-b-[1px] transition-colors border-transparent hover:border-primary">
+            <h4 className="leading-4 mb-[3px] max-w-max border-b-[1px] transition-colors border-transparent hover:border-primary focus-visible:border-primary">
               {firstName} {lastName}
             </h4>
             <p className="text-secondary text-xs mb-1">@{username}</p>

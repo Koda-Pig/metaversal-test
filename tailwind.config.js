@@ -15,7 +15,8 @@ module.exports = {
         "primary-50": "#ECE9FB",
         secondary: "#5c6970",
         "secondary-50": "#FDEDE7",
-        "bg-primary": "#F9FAFA",
+        "grey-cold-20": "#F9FAFA",
+        "grey-cold-900": "#2E3538",
         pink: "#FF0073",
         purple: "#811AB8",
         blue: "#4426D9",
@@ -23,6 +24,7 @@ module.exports = {
         "light-blue-50": "#E5F4FF",
         "grey-cold-50": "#F1F3F4",
         "off-white": "#FFFAF5",
+        "slate-15": "#DFDFDF",
       },
       gridTemplateColumns: {
         "auto-fill-100": "repeat(auto-fill, minmax(300px, 1fr))",
