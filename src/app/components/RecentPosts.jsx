@@ -6,6 +6,7 @@ import Spinner from "@/app/components/Spinner";
 import ErrorMessage from "@/app/components/ErrorMessage";
 import { addUsersToPosts } from "@/app/lib";
 import { fetchData } from "@/app/api/fetchdata";
+import SkeletonPost from "@/app/components/SkeletonPost";
 
 const BATCH_SIZE = 5;
 
@@ -77,7 +78,7 @@ const RecentPosts = () => {
     };
   }, [posts, showError, hasMorePosts]);
 
-  if (loading && posts.length === 0) return <Spinner />;
+  if (loading && posts.length === 0) return <SkeletonPost />;
 
   if (showError) return <ErrorMessage errorTitle="Error loading posts" />;
 

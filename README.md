@@ -59,6 +59,7 @@ There are several issues in the [Figma mockup](https://www.figma.com/design/yKiO
 03/10/2024 +- 3 hours
 04/10/2024 +- 5 hours
 05/10/2024 +- 4 hours
+06/10/2024 +- 5 hours
 
 ## Comments and whining
 
@@ -78,15 +79,18 @@ grid-template-columns: repeat(auto-fill, minmax(370px, 1fr));
 }
 ```
 
+Nevermind I changed my mind about this. It's inconsistent. React or nextjs adds a <template> tag to the DOM and it messes up the spacing. I'm going back to using `grid gap-12`.
+
 - Wild that this project uses (at least?) 3 different kinds of caching. SSG from Next.js, HTTP caching, and in-memory caching. I wonder at what point of adding different caching methods with all their cache validation and cache invalidation strategies, it becomes too much. Surely at some point just serving the data from the server is faster than all the cache validation and cache invalidation strategies. I guess it depends on the use case and what you're trying to achieve.
 
 ## Other improvements I'd like to do
 
-- Add a read more to text-ellipses the post content; use line-clamp-3 class
+- Add a read more to text-ellipses the post content; use line-clamp-3 class. There is actually styles for this in the components section.
 - Add toggle for dark mode
 
 ## To do:
 
-- Implement skeleton loaders
+- Implement skeleton loaders - handle loading all before returning actual data
 - Implement [react query](https://tanstack.com/query/latest/docs/framework/react/overview#enough-talk-show-me-some-code-already) instead of fetching data in useEffect in the RecentPosts component
 - refactor RecentPosts - more useEffect than necessary.
+- Check comopnents in figma to finalise designs

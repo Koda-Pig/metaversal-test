@@ -29,22 +29,10 @@ const UserFull = async ({ userId }) => {
   const totalLikes = calculateTotalLikes(posts);
 
   return (
-    <Card classNames="mt-8">
-      <div
-        className={`
-          rounded-2xl-inherit
-          rounded-b-none
-          bg-gradient-to-r
-          from-primary-50
-          to-secondary-50
-          h-16
-          grid
-          place-items-center
-          relative
-        `}
-      >
+    <Card classNames="mt-8 lg:mt-0">
+      <div className="rounded-2xl-inherit rounded-b-none bg-gradient-to-r from-primary-50 to-secondary-50 h-16 grid place-items-center relative">
         <Image
-          className="rounded-full border-[4px] border-white shadow absolute lg:top-10 lg:left-6"
+          className="box-content rounded-full border-[5px] border-white shadow absolute lg:top-11 lg:left-7"
           src="/images/avatar-large.png"
           alt="placeholder avatar"
           width={120}
@@ -52,18 +40,7 @@ const UserFull = async ({ userId }) => {
         />
       </div>
 
-      <div
-        className={`
-          px-4
-          pb-6
-          text-center
-          mt-12
-          lg:mt-6
-          lg:text-left
-          lg:grid
-          lg:pl-40
-        `}
-      >
+      <div className="px-4 pb-6 text-center mt-12 lg:mt-6 lg:text-left lg:grid lg:pl-48">
         <h1 className="text-[30px] leading-[30px] mb-2">
           {firstName} {lastName}
         </h1>
@@ -100,29 +77,14 @@ const UserFull = async ({ userId }) => {
           </div>
           <div>
             <h2 className=" text-start text-2xl">{totalLikes}</h2>
-            <span className="text-secondary text-xs">LIKES</span>
+            <span className="text-secondary text-xs">
+              LIKE{totalLikes !== 1 ? "S" : ""}
+            </span>
           </div>
         </div>
       </div>
 
-      <div
-        className={`
-          p-4
-          flex
-          gap-6
-          border-t
-        border-grey-cold-50 
-          justify-center
-          bg-gradient-to-b
-          from-white
-          to-off-white
-          to-100%
-          rounded-2xl-inherit
-          rounded-t-none
-          lg:justify-start
-          lg:px-6
-        `}
-      >
+      <div className="p-4 flex gap-6 border-t border-grey-cold-50 justify-center bg-gradient-to-b from-white to-off-white to-100% rounded-2xl-inherit rounded-t-none lg:justify-start lg:px-6">
         <Button label="Follow" type="primary" />
         <Button label="Message" type="secondary" />
       </div>

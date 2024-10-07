@@ -11,7 +11,7 @@ export const calculateTotalLikes = (posts) => {
 };
 
 export const sortPostsByLikeCount = (posts) => {
-  return posts.sort((a, b) => b.post.likes - a.post.likes);
+  return posts.sort((a, b) => b.post.reactions.likes - a.post.reactions.likes);
 };
 
 export const sortUsersByPostCount = (users) => {
