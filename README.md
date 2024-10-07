@@ -48,11 +48,7 @@ Chose in-memory caching using `lru-cache` to cache data in storage as it fits th
 
 ## Issues found in mockup
 
-There are some issues in the [Figma mockup](https://www.figma.com/design/yKiOqBqcJVCuG42i6tmrkM/Front-End-Dev-Test?node-id=1133-16284&t=uJGmBShEkUrtbBrm-1). I have followed the mockup as closely as possible, but would like to point out the following:
-
 1. Incorrect sequential order of headings. h3 is used first, followed by an h2. This is not semantically correct.
-2. Suggested posts title text color is black. It shoud be either text primary or text secondary color as is used in the rest of the design.
-3. I'm using Roboto Flex as the font defined in the mockup, but it looks different in my project. I think this may be due to the 'wdth' font variation setting in Figma, which I've tried to apply but don't seem to be working.
 
 ## Time spent:
 
@@ -61,18 +57,17 @@ There are some issues in the [Figma mockup](https://www.figma.com/design/yKiOqBq
 05/10/2024 +- 4 hours
 06/10/2024 +- 5 hours
 
-## Other improvements I'd like to do
-
-- Add a read more to text-ellipses the post content; use line-clamp-3 class. There is actually styles for this in the components section.
-- Add toggle for dark mode
-
-## To do:
+## General notes:
 
 - Regarding loading, this requirement:
   ```
   If sections finish loading at different times, generally we want to avoid sections from shifting as they load in. Consider showing the skeletons until all sections finish loading.
   ```
   I've done this to an extent. SuggestedPosts, WhoToFollow, and UserProfile are all server components wrapped in `<Suspense>` boundaries so I await all of them to finish loading before I replace their skeleton counterparts. RecentPosts component on the other hand is a client side component that fetches data on mount. Wrapping it in a `<Suspense>` boundary won't do anything. It needs to be a client side component in order to detect when the user has scrolled to the bottom of the page to fetch more posts. It handles it's own loading states and returns skeleton versions of posts while it is loading.
-- Implement [react query](https://tanstack.com/query/latest/docs/framework/react/overview#enough-talk-show-me-some-code-already) instead of fetching data in useEffect in the RecentPosts component
+
+## Other improvements I'd like to do
+
+- Add a read more to text-ellipses the post content; use line-clamp-3 class. There is actually styles for this in the components section.
+- Add toggle for dark mode
+  Implement [react query](https://tanstack.com/query/latest/docs/framework/react/overview#enough-talk-show-me-some-code-already) instead of fetching data in useEffect in the RecentPosts component
 - refactor RecentPosts - more useEffect than necessary.
-- Check components in figma to finalise designs

@@ -24,8 +24,8 @@ const Post = ({ post, user }) => {
             <h4 className="leading-4 mb-[3px] max-w-max border-b-[1px] transition-colors border-transparent hover:border-primary focus-visible:border-primary">
               {firstName} {lastName}
             </h4>
-            <p className="text-secondary text-xs mb-1">@{username}</p>
           </Link>
+          <p className="text-secondary text-xs mb-1">@{username}</p>
 
           <p className="mt-4 mb-3 text-secondary">{body}</p>
 

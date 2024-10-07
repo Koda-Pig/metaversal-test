@@ -52,7 +52,6 @@ const UserFull = async ({ userId }) => {
 
           <p className="flex items-center justify-center lg:justify-start gap-1 mb-3 lg:m-0">
             <Image
-              className=""
               src="/icons/map-pin.svg"
               alt="placeholder avatar"
               width={12}
@@ -64,7 +63,7 @@ const UserFull = async ({ userId }) => {
           </p>
         </div>
 
-        <p className="text-light-blue bg-light-blue-50 mx-auto lg:mx-0 mb-6 px-3 w-max font-bold grid place-items-center h-7 rounded-full">
+        <p className="text-light-blue bg-light-blue-50 mx-auto lg:mx-0 mb-6 px-3 w-max font-bold grid place-items-center h-7 rounded-xl">
           {department}
         </p>
 
