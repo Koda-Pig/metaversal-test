@@ -19,8 +19,8 @@ const UserSummary = ({ user }) => {
           />
         </Link>
         <Link href={url} className="overflow-hidden">
-          <h4 className="mb-[3px] leading-4 border-b-[1px] transition-colors border-transparent hover:border-primary focus-visible:border-primary truncate">
-            {user.firstName} {user.lastName}impossiblylongsurname
+          <h4 className="mb-[3px] leading-4 border-b-[1px] transition-colors border-transparent hover:border-primary focus-visible:border-primary sm:truncate">
+            {user.firstName} {user.lastName}
           </h4>
           <p className="text-secondary text-xs">@{user.username}</p>
         </Link>

@@ -32,7 +32,7 @@ const UserFull = async ({ userId }) => {
     <Card classNames="mt-8 lg:mt-0">
       <div className="rounded-2xl-inherit rounded-b-none bg-gradient-to-r from-primary-50 to-secondary-50 h-16 grid place-items-center relative">
         <Image
-          className="box-content rounded-full border-[5px] border-white shadow absolute lg:top-11 lg:left-7"
+          className="box-content rounded-full border-[5px] border-white shadow-image absolute lg:top-11 lg:left-7"
           src="/images/avatar-large.png"
           alt="placeholder avatar"
           width={120}
@@ -46,7 +46,7 @@ const UserFull = async ({ userId }) => {
         </h1>
 
         <div className="lg:flex lg:align-center lg:gap-3 lg:mb-3">
-          <p className="flex items-center leading-[19px] text-secondary mb-3 lg:m-0">
+          <p className="flex items-center justify-center leading-[19px] text-secondary mb-3 lg:m-0">
             @{username}
           </p>
 

@@ -33,6 +33,7 @@ module.exports = {
       },
       boxShadow: {
         default: "0px 1px 3px #1A1A1A14",
+        image: "0px 2px 10px 0px #1A1A1A1A",
       },
       borderRadius: {
         "2xl-inherit": "calc(1rem - 1px)",
